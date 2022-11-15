@@ -1,0 +1,133 @@
+$color_base: #EDEDED;
+$color_fond: #121212; 
+$color_vert: #A5FFC9;
+$color_bleu: #0085B2; 
+
+// Titre
+@import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap');
+
+//Sous titre
+@import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap');
+//Paragraphe
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+@mixin titre{
+	font-family: "Hammersmith One";
+	font-size: 32px;
+	color: $color_vert; 
+}
+
+@mixin sous-titre{
+	font-family: "Source Code Pro";
+	font-size: 40px;
+    color: $color_base;
+}
+
+@mixin paragraphe{
+	font-family: "Roboto";
+	font-size : 28px; 
+	 color : $color_base;
+	 font-weight: bold;
+	
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	list-style-type: none;
+	text-decoration: none;
+}
+body{
+    width: 100%;
+    background-color: #121212;
+    form{
+    background-color: $color_bleu;
+    h2{
+      @include titre(); 
+      text-align: center;
+    }
+    width: 25%;
+    margin-top: 5%;
+    margin-left: 38%;
+    padding : 35px; 
+    background-position-x: center;
+    border:  1px solid $color_vert;
+    border-radius: 10px;
+   
+     input{
+        margin-left: 32%;
+     }
+     textarea{
+        margin-left: 20%;
+     }
+    .btn {
+        font-family: Roboto, sans-serif;
+        font-weight: 0;
+        margin-top: 5%;
+        font-size: 14px;
+        color: $color_fond;
+        font-weight: bold;
+        margin-left: 28%;
+        background-color: #a5ffc9;
+        padding: 10px 30px;
+        border: solid #00000000 2px;
+        box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+        border-radius: 50px;
+        transition : 700ms;
+        transform: translateY(0);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        cursor: pointer;
+        
+        }
+        .btn:hover{
+            transition : 1000ms;
+            padding: 10px 50px;
+            transform : translateY(-0px);
+            background-color: $color_fond;
+            color: $color_base;
+            border: solid 2px #0066cc;
+            
+            }
+            
+            
+}
+    header {
+        li {
+           margin-left: 25%;
+            a {
+                float: left;
+                font-size: 18px;
+                font-family: "Source Code Pro";
+                font-weight: bold;
+                color: #E2E2E2;
+                line-height: 100%;
+                border-radius: 4px;
+                margin-left: 12px;
+                opacity: 100%;
+            }
+        }
+       overflow: hidden;
+       width: 100%;
+       padding: 1% 5%;
+   
+           
+           a:hover {
+               color: $color_bleu; 
+               text-decoration: underline;
+           }
+       
+    
+}
+
+}
+
+
+
+
+
+
+
+

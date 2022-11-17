@@ -1,27 +1,44 @@
+
 document.getElementById("formulaire").addEventListener("submit", function(e) {
 	e.preventDefault();
+   
 
     var data = new FormData(this);
+	
+	console.log(data);
 	var xhr = new XMLHttpRequest();
+	
 
+	console.log(data);
 	xhr.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			console.log(this.response);
-			var res = this.response;
-			if ( res.success){
+                var res = this.response;
+				console.log(res);
+				if ( res.success){
 				console.log(" Realisation envoyé!" );
-			} else{
-				alert(res.msg); 
-			}
-		} else if (this.readyState == 4) {
-			alert("Une erreur est survenue...");
+
+				} else{
+					
+					console.log("error"); 
+				}
 		}
 	};
-
 	xhr.open("POST", "traitement_formulaire_realisation.php", true);
-	xhr.responseType = "text";
-	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xhr.responseType = "json";
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhr.send(data);
-
-	return false;
+    return false;
+  
 });
+
+
+// function test(t) {
+// 	if (t === undefined) {
+// 	  return 'Undefined value!';
+// 	}
+// 	return t;
+//   }
+  
+//   let x;
+  
+//   console.log(test(x));

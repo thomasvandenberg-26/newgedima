@@ -25,7 +25,7 @@ document.getElementById("formulaire").addEventListener("submit", function(e) {
 	};
 	xhr.open("POST", "traitement_formulaire_realisation.php", true);
 	xhr.responseType = "json";
-	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	// xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhr.send(data);
     return false;
   

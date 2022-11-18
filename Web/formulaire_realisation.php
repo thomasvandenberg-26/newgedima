@@ -45,7 +45,7 @@
 <textarea  name="description_rea" rows="5" cols="33" placeholder='description' required="required"></textarea> <br> <br>
 <input type='date'name='date_rea' placeholder='date rea' required="required"></input> <br><br>
 <input type='date'name='date_participation' placeholder='date participation' required="required"></input> <br> <br>
-<!-- <input type='file' name='upfile' placeholder='inserez votre photo' required="required"></input> <br> -->
+<input type='file' name='upfile' placeholder='inserez votre photo' required="required"></input> <br> 
 <button  id="envoi" type='submit' value='envoi' class='btn'>Envoyer </button>
 </form>    
 </body>

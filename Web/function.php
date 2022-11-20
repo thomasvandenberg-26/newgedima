@@ -3,8 +3,8 @@ function connexionBase(){
 
    $serveur= "localhost"; 
    $bd="newgedima";
-   $login= "Thomas_VANDENBERG";
-   $mdp= "10082426";
+   $login= "root";
+   $mdp= "";
   
 
    try {
@@ -18,12 +18,12 @@ function connexionBase(){
     }
 }
 
-function insertionRealisation($titre_rea,$description_rea,$date_rea,$date_participation,$url_rea){
+function insertionRealisation($titre_rea,$description_rea,$date_rea,$date_participation){
 
     $connexion = connexionBase();
-    $requete = "INSERT INTO realisation(`titre_rea`,`description_rea`,`date_rea`,`date_participation`,`url_rea`) VALUES (?,?,?,?,?)";
+    $requete = "INSERT INTO realisation(`titre_rea`,`description_rea`,`date_rea`,`date_participation`) VALUES (?,?,?,?)";
     $prep= $connexion->prepare($requete);
-    $prep->execute([$titre_rea,$description_rea,$date_rea,$date_participation,$url_rea]);
+    $prep->execute([$titre_rea,$description_rea,$date_rea,$date_participation]);
     if($prep->fetch())
     {
         return 4;

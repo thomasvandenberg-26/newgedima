@@ -8,48 +8,48 @@ $data=[];
    $description_rea= htmlspecialchars(strip_tags($_POST['description_rea'])); 
     $date_rea= htmlspecialchars(strip_tags($_POST["date_rea"]));
     $date_participation = htmlspecialchars(strip_tags($_POST["date_participation"])); 
-     $fichier = $_FILES['upfile']; 
+     $fichier = $_FILES['upfile']['name']; 
     
-   echo 'titre' . $titre_rea; 
-   echo 'description ' . $description_rea;
-   echo 'date realisation :'  . $date_rea;  
-   echo 'date participation : ' .$date_participation;
+           $allowed = [
+            "jpg" => "image/jpg",
+            "jpeg" => "image/jpeg",
+            "png" => "image/png"
+           ];
+          
+           $nom =  strtolower($_FILES['upfile']['name']); 
+           $filetype = $_FILES['upfile']['type'];
+           $filesize = $_FILES['upfile']['size'];
+           $extension = strtolower(pathinfo($nom,PATHINFO_EXTENSION));
+       
+      if(!array_key_exists($extension,$allowed) || !in_array($filetype,$allowed)){
+        die("Erreur : format de fichier incorrect"); 
+      }
+        if($filesize >= 5097152){
+          die("fichier trop volumineux"); 
+        }
+       
+        $newfilename = __DIR__ . "/assets/photos/$nom";
 
-    // $tailleMax= 5097152;
-    // $extensionsValides = array('jpg', 'jpeg', 'pdf', 'png');
-
-    // if($_FILES['upfile']['size']> $tailleMax)
-    // {
-    //     echo ' la taille de limage est superieur a 5mo'; 
-    // }else{
-    //     $extensionsUpload = strtolower(substr(strrchr($_FILES['upfile']['name'], '.'), 1));
-    //     if (in_array($extensionsUpload, $extensionsValides) == false) { // si le type d'extension du fichier est envoyé, la participation est refusé
-    //         echo 'extension du fichier : incompatible';
-    //       }else {
-    //         echo 'insertion base de données';
-          
-        //    $nom =  date("Y-m-d-H-i-s");
-        $chemin = "Web/assets/photos/";
-        $nom =  date("Y-m-d-H-i-s"); 
-      
-        $tmp_name= $_FILES['upfile']['tmp_name'];
-        $name= basename($_FILES['upfile']["name"]);
-      //  . "." . $extensionsUpload;
-     move_uploaded_file($tmp_name, SITE_ROOT .$chemin .$nom);
-          // $resultat = move_uploaded_file($_FILES['upfile']['tmp_name'], $chemin . $nom);
-          $fichier= $_FILES['upfile']["name"]; 
-          echo $fichier; 
-          
-        
-          
+         if( $resultat = move_uploaded_file($_FILES['upfile']['tmp_name'], $newfilename))
+          {
+               print "Téléchargé avec succes !";
+          }
+          else{
+             print "nom fichier : " . $_FILES['upfile']['name']; 
+             print "Echec du téléchargement " ; 
+          }
+       
          $success = 1; 
             $msg = "insertio ok";
             $res = ["success" => $success, "msg" => $msg]; 
-            insertionRealisation($titre_rea,$description_rea,$date_rea,$date_participation,$fichier);
+           if( insertionRealisation($titre_rea,$description_rea,$date_rea,$date_participation,$fichier)){
+              print "insertion réussi";
+           };
+           {
+              print "erreur d'insertion"; 
+           }
             echo json_encode($res);
             
           }
-//       }
-//  }
      
 ?>

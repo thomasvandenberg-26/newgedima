@@ -18,12 +18,12 @@ function connexionBase(){
     }
 }
 
-function insertionRealisation($titre_rea,$description_rea,$date_rea,$date_participation){
+function insertionRealisation($titre_rea,$description_rea,$date_rea,$date_participation,$url_rea){
 
     $connexion = connexionBase();
-    $requete = "INSERT INTO realisation(`titre_rea`,`description_rea`,`date_rea`,`date_participation`) VALUES (?,?,?,?)";
+    $requete = "INSERT INTO realisation(`titre_rea`,`description_rea`,`date_rea`,`date_participation`,`url_rea`) VALUES (?,?,?,?,?)";
     $prep= $connexion->prepare($requete);
-    $prep->execute([$titre_rea,$description_rea,$date_rea,$date_participation]);
+    $prep->execute([$titre_rea,$description_rea,$date_rea,$date_participation,$url_rea]);
     if($prep->fetch())
     {
         return 4;

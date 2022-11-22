@@ -39,6 +39,11 @@
 
 </header>
 <body>
+<?php 
+   if(isset($_GET['message']) and !empty($_GET['message']) ){
+     echo "<p> message : ".$_GET["message"]." </p>";
+  }
+  ?>
 <form id="formulaire">
 <h2> Realisation </h2><br>
 <input type='text'name='titre_rea' placeholder='titre rea' required="required" ></input> <br> <br> 
@@ -48,9 +53,18 @@
 <input type='file' name='upfile' placeholder='inserez votre photo' required="required"></input> <br> 
 <button  id="envoi" type='submit' value='envoi' class='btn'>Envoyer </button>
 </form>    
+
+
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="crossorigin="anonymous"></script>
 <script src="app.js"></script>
+
+
 </html>
 
+<style>
+  p{
+    color : white; 
+  }
+</style>

@@ -1,3 +1,4 @@
+<?php include 'function.php'; ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -44,6 +45,8 @@
      echo "<p> message : ".$_GET["message"]." </p>";
   }
   ?>
+<p> <?echo "message " . $_GET['message'] ?> </p>
+
 <form id="formulaire">
 <h2> Realisation </h2><br>
 <input type='text'name='titre_rea' placeholder='titre rea' required="required" ></input> <br> <br> 
@@ -51,7 +54,7 @@
 <input type='date'name='date_rea' placeholder='date rea' required="required"></input> <br><br>
 <input type='date'name='date_participation' placeholder='date participation' required="required"></input> <br> <br>
 <input type='file' name='upfile' placeholder='inserez votre photo' required="required"></input> <br> 
-<button  id="envoi" type='submit' value='envoi' class='btn'>Envoyer </button>
+<button  id="envoi" type='submit' value='envoi' class='btn'  >Envoyer </button>
 </form>    
 
 

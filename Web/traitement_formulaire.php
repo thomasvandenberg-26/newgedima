@@ -41,19 +41,12 @@ if (!empty($_POST['titre_rea']) and !empty($_POST['description_rea']) and !empty
       if (insertionRealisation($titre_rea, $description_rea, $date_rea, $date_participation, $fichier)) {
        $msg= "Vous avez participé au concours félicitation !";
     } 
-   }
-      
-      
-   }
-    
-   // else {
-   //    print "erreur d'insertion";
-   // }
+   }  
    $res = ["success" => $success, "msg" => $msg];
-
-
-   header('Location: formulaire_realisation.php?message=' . $msg,$replace=true);
+   echo "res" . $res; 
    echo json_encode($res);
+  
 
-
+   }
+        
 ?>

@@ -19,7 +19,7 @@ document.getElementById("formulaire").addEventListener("submit", function(e) {
 
 				} else{
 					
-					console.log(res.msg); 
+					console.log(res);  
 				}
 		}
 	};

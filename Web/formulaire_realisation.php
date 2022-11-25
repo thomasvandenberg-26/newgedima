@@ -41,13 +41,13 @@
 </header>
 <body>
 <?php 
-   if(isset($_GET['message']) and !empty($_GET['message']) ){
-     echo "<p> message : ".$_GET["message"]." </p>";
-  }
+  //  if(isset($_GET['message']) and !empty($_GET['message']) ){
+  //    echo "<p> message : ".$_GET["message"]." </p>";
+  // }
   ?>
-<p> <?echo "message " . $_GET['message'] ?> </p>
 
-<form id="formulaire">
+
+ <form   method="POST" action="#" enctype="multipart/form-data" id="formcom">
 <h2> Realisation </h2><br>
 <input type='text'name='titre_rea' placeholder='titre rea' required="required" ></input> <br> <br> 
 <textarea  name="description_rea" rows="5" cols="33" placeholder='description' required="required"></textarea> <br> <br>
@@ -61,7 +61,24 @@
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="crossorigin="anonymous"></script>
-<script src="app.js"></script>
+<script type="text/javascript">
+  $(function(){
+    $("#formcom").submit(function(){
+     titre_rea = $(this).find("input[name=titre_rea]").val();
+     description_rea = $(this).find("textarea[name=description_rea]").val();
+     date_rea = $(this).find("input[name=date_rea]").val();
+     date_participation = $(this).find("input[name=date_participation]").val(); 
+     upfile = $(this).find("input[name=upfile").val(); 
+     $.post("jqphp.php", {titre_rea: titre_rea,description_rea: description_rea,date_rea: 
+        date_rea, date_participation: date_participation, upfile: upfile},
+        function(data) {
+            alert(data);
+        });
+      
+        return false; 
+      });
+}); 
+</script>
 
 
 </html>

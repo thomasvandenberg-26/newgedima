@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+    <link rel="stylesheet" href= css/style.css media="screen" type="text/css" />
         <link rel="header" href="header.php" />
     <title>Document</title>
 </head>
@@ -19,7 +19,7 @@
   ?>
 
 
-<form id="formulaire">
+<form id="formulaire" action="traitement_formulaire.php" method="post" enctype="multipart/form-data">
 <h2> Realisation </h2><br>
 <input type='text'name='titre_rea' placeholder='titre rea' required="required" ></input> <br> <br> 
 <textarea  name="description_rea" rows="5" cols="33" placeholder='description' required="required"></textarea> <br> <br>
@@ -30,8 +30,7 @@
 </form>    
 </body>
 
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="crossorigin="anonymous"></script>
-<script src="app.js"></script>
+
 
 
 </html>

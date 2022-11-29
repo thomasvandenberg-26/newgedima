@@ -15,15 +15,10 @@
 $date_inscription = [2022-11-30];
 $date_limite = [2022-12-10];
 
-if (date("Y-m-d") >= $date_inscription and $date_inscription <= $date_limite)?> <?php {  ?>
+if (date("Y-m-d") >= $date_inscription and $date_inscription <= $date_limite){
+?> 
 <button type='submit' value='envoi' class='btn' onclick="location.href='formulaire_realisation';">Envoyer </button>
-}
-
-
-?>
-
-
-
+<?} ?>
     
 </body>
 </html>

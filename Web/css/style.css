@@ -14,6 +14,7 @@ body {
   background-color: white;
 }
 body form {
+  margin-top: 5%;
   background-color: #0085B2;
   width: 25%;
   margin-top: 5%;
@@ -62,27 +63,4 @@ body form .btn:hover {
   background-color: #121212;
   color: #EDEDED;
   border: solid 2px #0066cc;
-}
-body header {
-  overflow: hidden;
-  width: 100%;
-  padding: 1% 5%;
-}
-body header li {
-  margin-left: 25%;
-}
-body header li a {
-  float: left;
-  font-size: 18px;
-  font-family: "Source Code Pro";
-  font-weight: bold;
-  color: #E2E2E2;
-  line-height: 100%;
-  border-radius: 4px;
-  margin-left: 12px;
-  opacity: 100%;
-}
-body header a:hover {
-  color: #0085B2;
-  text-decoration: underline;
 }/*# sourceMappingURL=style.css.map */

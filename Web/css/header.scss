@@ -1,0 +1,26 @@
+header {
+    li {
+       margin-left: 25%;
+        a {   float: left;
+            font-size: 18px;
+            font-family: "Source Code Pro";
+            font-weight: bold;
+            color: #E2E2E2;
+            line-height: 100%;
+            border-radius: 4px;
+            margin-left: 12px;
+            opacity: 100%;
+        }
+    }
+   overflow: hidden;
+   width: 100%;
+   padding: 1% 5%;
+
+       
+       a:hover {
+           color: #0085B2; 
+           text-decoration: underline;
+       }
+   
+
+}

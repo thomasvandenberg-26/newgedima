@@ -1,14 +1,11 @@
 
 document.getElementById("formulaire").addEventListener("submit", function(e) {
-	e.preventDefault();
-   
+	e.preventDefault()
 
     var data = new FormData(this);
 	
 	console.log(data);
 	var xhr = new XMLHttpRequest();
-	
-
 	console.log(data);
 	xhr.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
@@ -23,9 +20,9 @@ document.getElementById("formulaire").addEventListener("submit", function(e) {
 				}
 		}
 	};
+	
 	xhr.open("POST", "traitement_formulaire.php", true);
 	xhr.responseType = "json";
-	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhr.send(data);
     return false;
   

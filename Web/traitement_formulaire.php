@@ -10,7 +10,8 @@ if (isset($_POST['titre_rea']) and isset($_POST['description_rea']) and isset($_
    $description_rea = htmlspecialchars(strip_tags($_POST['description_rea']));
    $date_rea = htmlspecialchars(strip_tags($_POST["date_rea"]));
    $date_participation = htmlspecialchars(strip_tags($_POST["date_participation"]));
-   $message = "";
+   
+   $message = "pas derreur";
    $msg="";
    $fichier = "/web/assets/photos/" . $_FILES['upfile']['name'];
    $allowed = [
@@ -23,22 +24,30 @@ if (isset($_POST['titre_rea']) and isset($_POST['description_rea']) and isset($_
    $filetype = $_FILES['upfile']['type'];
    $filesize = $_FILES['upfile']['size'];
    $extension = strtolower(pathinfo($nom, PATHINFO_EXTENSION));
-   $success=0;
+   $success= 1;
    $newfilename = __DIR__ . "/assets/photos/$nom";
    if (!array_key_exists($extension, $allowed) || !in_array($filetype, $allowed)) {
       $message = "the ext is incorrect";
       $msg="the ext is incorrect";   
+      $success = 0;
    }
-     if ($filesize >= 5097152) {
-            $message = "fichier trop volumineux";
-            $msg=  "fichier trop volumineux";
-    }
-    else{
+   if ($filesize >= 5097152) {
+      $message = "fichier trop volumineux";
+      $msg=  "fichier trop volumineux";
+      $success = 0; 
+   }
+   
+   if ($success !=0){
       $resultat = move_uploaded_file($_FILES['upfile']['tmp_name'], $newfilename);
       insertionRealisation($titre_rea, $description_rea, $date_rea, $date_participation, $fichier);
-   }  
+      $success = 1;
+      $msg="OK";
    }
-   // $res = ["success" => $success, "msg" => $msg];
-   // echo "res" . $res; 
-   // echo json_encode($res);      
+   $res = ["success" => $success, "msg" => $msg];
+   var_dump( $res); 
+   echo json_encode($res);   
+}
+     
+
+   
 ?>

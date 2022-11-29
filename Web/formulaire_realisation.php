@@ -65,6 +65,9 @@
 </html>
 
 <style>
+  body{
+    background-color: white;
+  }
   p{
     color : white; 
   }

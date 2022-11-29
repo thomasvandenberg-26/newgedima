@@ -9,19 +9,20 @@ document.getElementById("formulaire").addEventListener("submit", function(e) {
 	console.log(data);
 	xhr.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-                var res = this.response;
-				console.log(res);
-				if ( res.success){
-				console.log(" Realisation envoyé!" );
+                // var res = this.response;
+				// console.log(res);
+				// if ( res.success){
+				// console.log(" Realisation envoyé!" );
 
-				} else{
+				// } else{
 					
-					console.log(res);  
-				}
+				// 	console.log(res);  
+				// }
 		}
 	};
 	
 	xhr.open("POST", "traitement_formulaire.php", true);
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhr.responseType = "json";
 	xhr.send(data);
     return false;

@@ -10,15 +10,15 @@ document.getElementById("formulaire").addEventListener("submit", function(e) {
 	console.log(data);
 	xhr.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-                //  var res = this.response;
-				//  console.log(res);
-				//  if ( res.success){
-				//  console.log(" Realisation envoyé!" );
+			var res = this.response;
+			console.log(res);
+			if ( res.success){
+			console.log(" Realisation envoyé!" );
 
-				//  } else{
-				
-				//  	console.log(res);  
-				//  }
+			} else{
+			
+				console.log(res);  
+			}
 		}
 	};
 	

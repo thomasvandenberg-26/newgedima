@@ -4,11 +4,12 @@ $data = [];
 include 'function.php';
 echo "test"; 
 if (!empty($_POST['titre_rea']) and !empty($_POST['description_rea']) and !empty($_POST['date_rea']) and !empty($_POST['date_participation']) and !empty($_FILES['upfile'])) {
-   $date ="2022-12-01";
+   $date_debut ="2022-12-02";
+   $date_fin = "2022-12-09";
    $date_now =  date("Y-m-d");
-   if ($date_now < $date || $date_now > $date)
+   if ($date_now < $date_debut || $date_now > $date_fin)
    {
-      echo "vous netes pas à la bonne date";
+      echo "le concours a n'a pas commencé ou est déja fini";
    }
    else{
 

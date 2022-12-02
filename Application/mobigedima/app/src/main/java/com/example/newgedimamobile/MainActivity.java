@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 Date dateJour = sdf.parse("2022-03-24");
                 if (dateFinIncription.before(dateJour) && dateDebutVote.after(dateJour)) {
                     // Requête HTTP GET
-                    String url = "http://10.0.2.2/gedimagination/Sprint%202/Realisation.php";
+                    String url = "http://10.0.2.2/newgedima/Application/realisation.php";
                     AsyncHttpClient request = new AsyncHttpClient();
                     request.get(url, new JsonHttpResponseHandler() {
                         @Override

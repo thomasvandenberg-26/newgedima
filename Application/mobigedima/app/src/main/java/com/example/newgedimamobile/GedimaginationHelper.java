@@ -19,14 +19,6 @@ public class GedimaginationHelper extends SQLiteOpenHelper {
                 + "titre_rea TEXT NOT NULL,"
                 + "description_rea TEXT NOT NULL,"
                 + "nb_jaime INT );");
-        db.execSQL("CREATE TABLE  Votant("
-                + "bon_votant TEXT NOT NULL ,"
-                + "nom_votant TEXT NOT NULL,"
-                + "mail_votant TEXT NOT NULL PRIMARY KEY);");
-        db.execSQL("CREATE TABLE  Admin("
-                + "bon_admin TEXT NOT NULL ,"
-                + "nom_admin TEXT NOT NULL,"
-                + "mail_admin TEXT NOT NULL PRIMARY KEY);");
     }
 
     @Override

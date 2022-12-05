@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class GedimaginationHelper extends SQLiteOpenHelper {
     public GedimaginationHelper(Context context) {
-        super(context, "baseGedimagination.db", null, 1);
+        super(context, "baseGedimagination.db", null, 2);
     }
 
     @Override
@@ -17,8 +17,7 @@ public class GedimaginationHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE  Realisation("
                 + "id_realisation INTEGER NOT NULL PRIMARY KEY,"
                 + "titre_rea TEXT NOT NULL,"
-                + "description_rea TEXT NOT NULL,"
-                + "nb_jaime INT );");
+                + "description_rea TEXT NOT NULL)");
     }
 
     @Override

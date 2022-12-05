@@ -18,7 +18,7 @@ $mdp = "";
 function GED_getAllRealisations(){
     try {
         $conn = connexionBase();
-        $requete = "SELECT titre_rea, description_rea, date_participation, date_rea from realisation";
+        $requete = "SELECT titre_rea, description_rea from realisation";
         $lignes = $conn->query($requete)->fetchAll(PDO::FETCH_ASSOC);
         return $lignes;
     }

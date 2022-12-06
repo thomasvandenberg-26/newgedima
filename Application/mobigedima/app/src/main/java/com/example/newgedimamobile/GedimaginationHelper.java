@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class GedimaginationHelper extends SQLiteOpenHelper {
     public GedimaginationHelper(Context context) {
-        super(context, "baseGedimagination.db", null, 2);
+        super(context, "baseGedimagination.db", null, 3);
     }
 
     @Override

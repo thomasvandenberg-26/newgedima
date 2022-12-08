@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">newgedimamobile</string>
     <string name="textImport">IMPORTER</string>
-
+    <string name="textVoter">VOTER</string>
 </resources>

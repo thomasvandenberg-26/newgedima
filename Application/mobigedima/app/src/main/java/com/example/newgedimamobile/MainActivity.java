@@ -21,15 +21,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 public class MainActivity extends AppCompatActivity {
     private GedimaginationDAO maBase;
     private ArrayList<HashMap<String, String>> lesRealisations;
     private Button btnImporter;
+    private Button btnVoter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,17 +41,29 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         btnImporter = (Button) findViewById(R.id.importer);
         btnImporter.setOnClickListener(listener_importer);
-    }
+        btnVoter= (Button) findViewById(R.id.Voter);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date dateFinIncription = dateFormat.parse("2022-12-10");
+            Date dateDebutVote = dateFormat.parse("2022-12-12");
+            Date date = Calendar.getInstance().getTime();
+            String strDate = dateFormat.format(date);
+            if (date.after(dateFinIncription) && date.before(dateDebutVote)) {
+                btnImporter.setEnabled(true);
+                btnVoter.setEnabled(false);
+            }
+            if (date.after(dateDebutVote)) {
+                btnImporter.setEnabled(false);
+                btnVoter.setEnabled(true);
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
+    }
     private View.OnClickListener listener_importer = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            try {
-                Date dateDebutVote = sdf.parse("2022-03-25");
-                Date dateFinIncription = sdf.parse("2022-03-20");
-                Date dateJour = sdf.parse("2022-03-24");
-                if (dateFinIncription.before(dateJour) && dateDebutVote.   after(dateJour)) {
                     // Requête HTTP GET
                     String url = "http://10.0.2.2/newgedima/Application/realisation.php";
                     AsyncHttpClient request = new AsyncHttpClient();
@@ -63,14 +79,15 @@ public class MainActivity extends AppCompatActivity {
                                     String titre_rea = response.getJSONObject(i).getString("titre_rea");
                                     String description_rea = response.getJSONObject(i).getString("description_rea");
                                     maBase.ajouterRealisation(new Realisation(id_realisation, titre_rea, description_rea));
+
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
                             }
                             Toast.makeText(getApplicationContext(), "Importation terminée", Toast.LENGTH_LONG).show();
-
+                            btnImporter.setEnabled(false);
+                            Toast.makeText(getApplicationContext(), "vous pouvez pas importer un deuxième fois", Toast.LENGTH_LONG).show();
                         }
-
                         @Override
                         public void onFailure(int statusCode, cz.msebera.android.httpclient.Header[] headers, String responseString, Throwable throwable) {
                             super.onFailure(statusCode, headers, responseString, throwable);
@@ -78,13 +95,6 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Echec de l'importation ", Toast.LENGTH_LONG).show();
                         }
                     });
-                } else {
-                    btnImporter.setEnabled(false);
-                    Toast.makeText(getApplicationContext(), "les importations sont fermées veuillez attendre la période d'importation comprise entre la fin des inscriptions et le début des votes ", Toast.LENGTH_LONG).show();
                 }
-            } catch (ParseException parseException) {
-                parseException.printStackTrace();
-            }
-        }
     };
 }

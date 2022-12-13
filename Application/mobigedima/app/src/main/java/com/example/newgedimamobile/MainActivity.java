@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<HashMap<String, String>> lesRealisations;
     private Button btnImporter;
     private Button btnVoter;
+    private Button btnExporter;
 
 
     @Override
@@ -42,20 +43,34 @@ public class MainActivity extends AppCompatActivity {
         btnImporter = (Button) findViewById(R.id.importer);
         btnImporter.setOnClickListener(listener_importer);
         btnVoter= (Button) findViewById(R.id.Voter);
+
+        btnExporter= (Button) findViewById(R.id.exporter);
+        btnExporter.setOnClickListener(listener_exporter);
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            Date dateFinIncription = dateFormat.parse("2022-12-10");
-            Date dateDebutVote = dateFormat.parse("2022-12-12");
+            Date dateFinIncription = dateFormat.parse("2022-12-13");
+            Date dateDebutVote = dateFormat.parse("2022-12-15");
+            Date dateFinVote = dateFormat.parse("2022-12-16");
             Date date = Calendar.getInstance().getTime();
             String strDate = dateFormat.format(date);
-            if (date.after(dateFinIncription) && date.before(dateDebutVote)) {
+            if (date.after(dateFinIncription) && date.before(dateDebutVote))
                 btnImporter.setEnabled(true);
-                btnVoter.setEnabled(false);
-            }
-            if (date.after(dateDebutVote)) {
+            else
                 btnImporter.setEnabled(false);
+
+
+            if (date.after(dateDebutVote) && date.before(dateFinVote))
                 btnVoter.setEnabled(true);
+            else{
+                btnVoter.setEnabled(false);
+
             }
+            if(date.after(dateFinVote))
+                btnExporter.setEnabled(true);
+            else{
+                btnExporter.setEnabled(false);
+            }
+
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -96,5 +111,10 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
                 }
+
+    };
+    private View.OnClickListener listener_exporter = new View.OnClickListener() {
+        public void onClick(View v) {
+        }
     };
 }

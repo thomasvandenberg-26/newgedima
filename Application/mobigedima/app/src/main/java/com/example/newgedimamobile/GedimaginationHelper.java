@@ -1,5 +1,7 @@
 package com.example.newgedimamobile;
 
+import static java.sql.Types.INTEGER;
+
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -18,6 +20,12 @@ public class GedimaginationHelper extends SQLiteOpenHelper {
                 + "id_realisation INTEGER NOT NULL PRIMARY KEY ,"
                 + "titre_rea TEXT NOT NULL,"
                 + "description_rea TEXT NOT NULL)");
+        db.execSQL("CREATE TABLE Votant("
+                + "code_votant INTEGER NOT NULL,"
+                + "nom_votant TEXT NOT NULL,"
+                + "mail_votant TEXT NOT NULL)");
+
+
     }
 
     @Override

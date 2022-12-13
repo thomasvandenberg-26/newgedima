@@ -3,4 +3,7 @@
     <string name="textImport">IMPORTER</string>
     <string name="textVoter">VOTER</string>
     <string name="textExporter">EXPORTER</string>
+    <string name="libNom">Nom</string>
+    <string name="libMail">Mail</string>
+    <string name="libCode">Code</string>
 </resources>

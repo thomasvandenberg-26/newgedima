@@ -1,6 +1,7 @@
 package com.example.newgedimamobile;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -43,13 +44,13 @@ public class MainActivity extends AppCompatActivity {
         btnImporter = (Button) findViewById(R.id.importer);
         btnImporter.setOnClickListener(listener_importer);
         btnVoter= (Button) findViewById(R.id.Voter);
-
+        btnVoter.setOnClickListener(listener_voter);
         btnExporter= (Button) findViewById(R.id.exporter);
         btnExporter.setOnClickListener(listener_exporter);
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            Date dateFinIncription = dateFormat.parse("2022-12-13");
-            Date dateDebutVote = dateFormat.parse("2022-12-15");
+            Date dateFinIncription = dateFormat.parse("2022-12-12");
+            Date dateDebutVote = dateFormat.parse("2022-12-13");
             Date dateFinVote = dateFormat.parse("2022-12-16");
             Date date = Calendar.getInstance().getTime();
             String strDate = dateFormat.format(date);
@@ -113,8 +114,15 @@ public class MainActivity extends AppCompatActivity {
                 }
 
     };
-    private View.OnClickListener listener_exporter = new View.OnClickListener() {
+    private View.OnClickListener listener_voter= new View.OnClickListener() {
         public void onClick(View v) {
+            Intent voter = new Intent(MainActivity.this, Voter.class);
+            startActivity(voter);
+        }
+    };
+    private View.OnClickListener listener_exporter= new View.OnClickListener() {
+        public void onClick(View v) {
+
         }
     };
 }

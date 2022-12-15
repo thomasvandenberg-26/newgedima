@@ -30,12 +30,14 @@ public class Voter extends AppCompatActivity {
     private Button btnValider;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voter);
         btnValider = (Button) findViewById(R.id.valider);
         btnValider.setOnClickListener(listener_valider);
+
 
         spinnerJaime = (Spinner) findViewById(R.id.listJaime);
         spinnerJaime.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Jaime));
@@ -48,6 +50,14 @@ public class Voter extends AppCompatActivity {
         spinnerId = (Spinner) findViewById(R.id.listRealisation);
         spinnerId2 = (Spinner) findViewById(R.id.listRealisation2);
         spinnerId3 = (Spinner) findViewById(R.id.listRealisation3);
+        maBase = new GedimaginationDAO(Voter.this);
+        Cursor curseurTous = maBase.getToutLesIds();
 
     }
+    private View.OnClickListener listener_valider = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+        }
+    };
 }

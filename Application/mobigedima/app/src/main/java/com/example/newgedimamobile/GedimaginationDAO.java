@@ -30,5 +30,9 @@ public class GedimaginationDAO {
         // ajout du réalisation dans la table
         maBase.insert("realisation", null, v);
     }
+    public Cursor getToutLesIds(){
+       Cursor curseurContact = maBase.rawQuery("SELECT id_realisation from Realisation", new String[]{});
+       return curseurContact;
+    }
 
 }

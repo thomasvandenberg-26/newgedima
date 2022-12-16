@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             Date dateFinIncription = dateFormat.parse("2022-12-12");
             Date dateDebutVote = dateFormat.parse("2022-12-13");
-            Date dateFinVote = dateFormat.parse("2022-12-16");
+            Date dateFinVote = dateFormat.parse("2022-12-18");
             Date date = Calendar.getInstance().getTime();
             String strDate = dateFormat.format(date);
             if (date.after(dateFinIncription) && date.before(dateDebutVote))
@@ -116,8 +116,8 @@ public class MainActivity extends AppCompatActivity {
     };
     private View.OnClickListener listener_voter= new View.OnClickListener() {
         public void onClick(View v) {
-            Intent voter = new Intent(MainActivity.this, Voter.class);
-            startActivity(voter);
+           Intent voter = new Intent(MainActivity.this, Voter.class);
+             startActivity(voter);
         }
     };
     private View.OnClickListener listener_exporter= new View.OnClickListener() {

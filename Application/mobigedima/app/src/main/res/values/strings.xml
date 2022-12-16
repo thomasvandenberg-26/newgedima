@@ -6,4 +6,5 @@
     <string name="libNom">Nom</string>
     <string name="libMail">Mail</string>
     <string name="libCode">Code</string>
+    <string name="textValider">Valider</string>
 </resources>

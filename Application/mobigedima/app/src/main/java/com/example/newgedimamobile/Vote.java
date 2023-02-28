@@ -6,6 +6,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -25,6 +27,7 @@ public class Vote extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vote);
+        bdd = new GedimaginationDAO(Vote.this);
         spinnerRealisation = (Spinner)findViewById(R.id.Choix1);
         spinnerNbJaime = (Spinner)findViewById(R.id.nbJaime1);
         Intent i = getIntent();
@@ -32,7 +35,7 @@ public class Vote extends AppCompatActivity {
 
     }
     private void ChargerSpinner(){
-        bdd = new GedimaginationDAO(Vote.this);
+
         Cursor curseurTous = bdd.selectionnerToutesLesRealisation();
         for(curseurTous.moveToFirst(); !curseurTous.isAfterLast(); curseurTous.moveToNext()) {
             @SuppressLint("Range")

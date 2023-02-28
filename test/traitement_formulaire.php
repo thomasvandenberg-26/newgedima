@@ -5,7 +5,7 @@ include 'function.php';
 echo "test"; 
 if (!empty($_POST['titre_rea']) and !empty($_POST['description_rea']) and !empty($_POST['date_rea']) and !empty($_POST['date_participation']) and !empty($_FILES['upfile'])) {
    echo "test2";
-   $date ="2022-12-01";
+   $date ="2023-03-28";
    $date_now =  date("Y-m-d");
    if ($date_now < $date || $date_now > $date)
    {

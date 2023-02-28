@@ -4,8 +4,8 @@ $data = [];
 include 'function.php';
 echo "test"; 
 if (!empty($_POST['titre_rea']) and !empty($_POST['description_rea']) and !empty($_POST['date_rea']) and !empty($_POST['date_participation']) and !empty($_FILES['upfile'])) {
-   $date_debut ="2022-12-02";
-   $date_fin = "2022-12-09";
+   $date_debut ="2023-02-28";
+   $date_fin = "2023-03-09";
    $date_now =  date("Y-m-d");
    if ($date_now < $date_debut || $date_now > $date_fin)
    {

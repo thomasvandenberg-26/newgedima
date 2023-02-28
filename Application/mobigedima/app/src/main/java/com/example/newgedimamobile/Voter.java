@@ -54,8 +54,8 @@ public class Voter extends AppCompatActivity {
     };
     private View.OnClickListener listener_vote= new View.OnClickListener() {
         public void onClick(View v) {
-            Intent voter = new Intent(Voter.this, Vote.class);
-            startActivity(voter);
+            Intent vote = new Intent(Voter.this, Vote.class);
+            startActivity(vote);
         }
     };
 }

@@ -49,9 +49,9 @@ public class MainActivity extends AppCompatActivity {
         btnExporter.setOnClickListener(listener_exporter);
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            Date dateFinIncription = dateFormat.parse("2022-02-03");
-            Date dateDebutVote = dateFormat.parse("2023-08-28");
-            Date dateFinVote = dateFormat.parse("2023-08-30");
+            Date dateFinIncription = dateFormat.parse("2022-02-20");
+            Date dateDebutVote = dateFormat.parse("2023-02-28");
+            Date dateFinVote = dateFormat.parse("2023-03-09");
             Date date = Calendar.getInstance().getTime();
             String strDate = dateFormat.format(date);
             if (date.after(dateFinIncription) && date.before(dateDebutVote))
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
                     // Requête HTTP GET
-                    String url = "http://10.0.2.2/newgedima/Application/realisation.php";
+                    String url = "http://10.0.2.2:8012/newgedima/Application/realisation.php";
                     AsyncHttpClient request = new AsyncHttpClient();
                     request.get(url, new JsonHttpResponseHandler() {
                         @Override

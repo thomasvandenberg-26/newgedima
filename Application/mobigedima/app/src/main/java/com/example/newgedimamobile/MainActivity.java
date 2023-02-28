@@ -49,9 +49,9 @@ public class MainActivity extends AppCompatActivity {
         btnExporter.setOnClickListener(listener_exporter);
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            Date dateFinIncription = dateFormat.parse("2022-12-12");
-            Date dateDebutVote = dateFormat.parse("2022-12-13");
-            Date dateFinVote = dateFormat.parse("2022-12-18");
+            Date dateFinIncription = dateFormat.parse("2022-02-03");
+            Date dateDebutVote = dateFormat.parse("2023-08-28");
+            Date dateFinVote = dateFormat.parse("2023-08-30");
             Date date = Calendar.getInstance().getTime();
             String strDate = dateFormat.format(date);
             if (date.after(dateFinIncription) && date.before(dateDebutVote))
@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
                             super.onSuccess(statusCode, headers, response);
                             Log.i("Json", response.toString());
                             maBase = new GedimaginationDAO(MainActivity.this);
+                            maBase.supprimerTous();
                             for (int i = 0; i < response.length(); i++) {
                                 try {
                                     String id_realisation = response.getJSONObject(i).getString("id_realisation");

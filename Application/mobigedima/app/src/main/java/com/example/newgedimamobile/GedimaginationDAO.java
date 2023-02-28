@@ -30,16 +30,19 @@ public class GedimaginationDAO {
         // ajout du réalisation dans la table
         maBase.insert("realisation", null, v);
     }
+    public void supprimerTous(){
+        maBase.delete("realisation", null,null);
+    }
     public Cursor getToutLesIds(){
        Cursor curseurContact = maBase.rawQuery("SELECT id_realisation from Realisation", new String[]{});
        return curseurContact;
     }
-    public ajouterVotant(Votant unVotant){
+    public void ajouterVotant(Votant unVotant){
         ContentValues v = new ContentValues();
         v.put("code_votant", unVotant.getCode());
         v.put("mail_votant", unVotant.getMail());
         v.put("nom_votant", unVotant.getNom());
-        maBase.insert("Votant", null,v)
+        maBase.insert("Votant", null,v);
     }
 
 }

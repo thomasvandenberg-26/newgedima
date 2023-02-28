@@ -6,5 +6,9 @@
     <string name="libNom">Nom</string>
     <string name="libMail">Mail</string>
     <string name="libCode">Code</string>
+    <string name="libVote">Vote</string>
     <string name="textValider">Valider</string>
+    <string name="libRealisation"> Realisations </string>
+    <string name="libChoix1"> Choix1</string>
+    <string name="libNbJaime1">nbJaime1</string>
 </resources>

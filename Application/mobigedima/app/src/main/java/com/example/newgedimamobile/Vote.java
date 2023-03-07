@@ -18,6 +18,8 @@ public class Vote extends AppCompatActivity {
 
     Spinner spinnerRealisation = null;
     Spinner spinnerNbJaime =  null;
+    Spinner spinnerRealisation2 = null;
+    Spinner spinnerNbJaime2 =  null;
     GedimaginationDAO bdd;
 
 
@@ -57,5 +59,7 @@ public class Vote extends AppCompatActivity {
         }
         spinnerRealisation.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,lesRealisations));
         spinnerNbJaime.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, lesNbJaimes));
+        spinnerRealisation2.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,lesRealisations));
+        spinnerNbJaime2.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, lesNbJaimes));
     }
 }

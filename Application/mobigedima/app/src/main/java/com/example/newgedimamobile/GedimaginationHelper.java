@@ -24,6 +24,9 @@ public class GedimaginationHelper extends SQLiteOpenHelper {
                 + "code_votant INTEGER NOT NULL,"
                 + "nom_votant TEXT NOT NULL,"
                 + "mail_votant TEXT NOT NULL)");
+        db.execSQL("CREATE TABLE Vote("
+                + "id_vote INTEGER NOT NULL PRIMARY KEY,"
+                + "nbJaime INTEGER NOT NULL PRIMARY KEY)");
 
 
     }

@@ -12,5 +12,9 @@
     <string name="libChoix1"> Choix1</string>
     <string name="libNbJaime1">nbJaime1</string>
     <string name="libChoix2"> Choix2</string>
-    <string name="libNbJaime2">nbJaime2</string>
+    <string name="libNbJaime2"> nbJaime2</string>
+    <string name="libChoix3">Choix3</string>
+    <string name="libNbJaime3">nbJaime3</string>
+    <string name="libValider">Valider</string>
+
 </resources>

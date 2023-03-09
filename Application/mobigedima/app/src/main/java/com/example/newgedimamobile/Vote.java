@@ -77,7 +77,7 @@ public class Vote extends AppCompatActivity {
                     r.setNbJaime(nbJaime3);
                     Log.i("Infos", r.toString());
                     bdd = new GedimaginationDAO(Vote.this);
-                    bdd.ajouterRealisation(r);
+                    bdd.ModifierRealisation(Realisation uneRealisation);
             }
 
         }

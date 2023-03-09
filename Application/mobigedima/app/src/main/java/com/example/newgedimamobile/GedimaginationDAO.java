@@ -27,12 +27,14 @@ public class GedimaginationDAO {
         v.put("id_realisation", uneRealisation.getId());
         v.put("titre_rea", uneRealisation.getTitre());
         v.put("description_rea", uneRealisation.getDescription());
+        v.put("nbJaime", uneRealisation.getNbJaime());
         // ajout du réalisation dans la table
         maBase.insert("realisation", null, v);
     }
     public void supprimerTous(){
         maBase.delete("realisation", null,null);
     }
+
     public Cursor getToutLesIds(){
        Cursor curseurContact = maBase.rawQuery("SELECT id_realisation from Realisation", new String[]{});
        return curseurContact;
@@ -44,5 +46,9 @@ public class GedimaginationDAO {
         v.put("nom_votant", unVotant.getNom());
         maBase.insert("Votant", null,v);
     }
-
+    public void ModifierRealisation(Realisation uneRealisation){
+        ContentValues v = new ContentValues();
+        v.put("nbjaime", uneRealisation.getNbJaime());
+        maBase.update("Realisation", v,"nbjaime = ?", new String[]{uneRealisation.getNbJaime().toString()});
+    }
 }

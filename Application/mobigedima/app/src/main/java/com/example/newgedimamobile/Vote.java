@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,12 +18,12 @@ import java.util.ArrayList;
 
 public class Vote extends AppCompatActivity {
 
-    Spinner spinnerRealisation = null;
-    Spinner spinnerNbJaime =  null;
-    Spinner spinnerRealisation2 = null;
-    Spinner spinnerNbJaime2 = null;
-    Spinner spinnerRealisation3 = null;
-    Spinner spinnerNbJaime3 = null;
+    public Spinner spinnerRealisation = null;
+    public Spinner spinnerNbJaime =  null;
+    public Spinner spinnerRealisation2 = null;
+   public  Spinner spinnerNbJaime2 = null;
+    public Spinner spinnerRealisation3 = null;
+    public Spinner spinnerNbJaime3 = null;
 
     Button btnValide = null;
 
@@ -59,12 +60,38 @@ public class Vote extends AppCompatActivity {
 
 
     }
-    private void ChargerSpinner() {
 
-        Cursor curseurTous = bdd.selectionnerToutesLesRealisation();
+    public View.OnClickListener EcouteurBouton = new View.OnClickListener() {
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.btnValider:
+                    int nbJaime = Integer.parseInt(spinnerNbJaime.getSelectedItem().toString());
+                    int nbJaime2 = Integer.parseInt(spinnerNbJaime2.getSelectedItem().toString());
+                    int nbJaime3 = Integer.parseInt(spinnerNbJaime3.getSelectedItem().toString());
+                    int idreal = Integer.parseInt(spinnerRealisation.getSelectedItem().toString());
+                    int idreal2 = Integer.parseInt(spinnerRealisation2.getSelectedItem().toString());
+                    int idreal3 = Integer.parseInt(spinnerRealisation3.getSelectedItem().toString());
+                    Realisation r = new Realisation();
+                    r.setNbJaime(nbJaime);
+                    r.setNbJaime(nbJaime2);
+                    r.setNbJaime(nbJaime3);
+                    Log.i("Infos", r.toString());
+                    bdd = new GedimaginationDAO(Vote.this);
+                    bdd.ajouterRealisation(r);
+            }
+
+        }
+    };
+
+    public  void ChargerSpinner() {
+        Log.i("charger spinner","ok");
+        Cursor curseurTous = bdd.getToutLesIds();
+        Log.i("nb",String.valueOf(curseurTous.getCount()));
         for (curseurTous.moveToFirst(); !curseurTous.isAfterLast(); curseurTous.moveToNext()) {
             @SuppressLint("Range")
+
             String realisation = curseurTous.getString(curseurTous.getColumnIndex("id_realisation"));
+            Log.i("realisation", realisation);
             lesRealisations.add(realisation);
 
         }
@@ -76,17 +103,5 @@ public class Vote extends AppCompatActivity {
         spinnerNbJaime3.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,lesNbJaimes));
 
     }
-    public View.OnClickListener EcouteurBouton = new View.OnClickListener() {
-        public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.btnValider:
-                    Float nbJaime = Float.valueOf(spinnerNbJaime.getSelectedItem().toString());
-                    Float nbJaime2 = Float.valueOf(spinnerNbJaime2.getSelectedItem().toString());
-                    Float nbJaime3 = Float.valueOf(spinnerNbJaime3.getSelectedItem().toString());
-
-            }
-
-        }
-    };
 
 }

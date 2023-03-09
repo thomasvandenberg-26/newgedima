@@ -48,10 +48,10 @@ public class MainActivity extends AppCompatActivity {
         btnExporter= (Button) findViewById(R.id.exporter);
         btnExporter.setOnClickListener(listener_exporter);
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            Date dateFinIncription = dateFormat.parse("2022-02-20");
-            Date dateDebutVote = dateFormat.parse("2023-02-28");
-            Date dateFinVote = dateFormat.parse("2023-03-09");
+        /*try {
+            Date dateFinIncription = dateFormat.parse("2023-03-08");
+            Date dateDebutVote = dateFormat.parse("2023-03-09");
+            Date dateFinVote = dateFormat.parse("2023-03-22");
             Date date = Calendar.getInstance().getTime();
             String strDate = dateFormat.format(date);
             if (date.after(dateFinIncription) && date.before(dateDebutVote))
@@ -75,13 +75,13 @@ public class MainActivity extends AppCompatActivity {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
+*/
     }
     private View.OnClickListener listener_importer = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
                     // Requête HTTP GET
-                    String url = "http://10.0.2.2:8012/newgedima/Application/realisation.php";
+                    String url = "http://10.0.2.2/newgedima/Application/realisation.php";
                     AsyncHttpClient request = new AsyncHttpClient();
                     request.get(url, new JsonHttpResponseHandler() {
                         @Override
@@ -95,14 +95,15 @@ public class MainActivity extends AppCompatActivity {
                                     String id_realisation = response.getJSONObject(i).getString("id_realisation");
                                     String titre_rea = response.getJSONObject(i).getString("titre_rea");
                                     String description_rea = response.getJSONObject(i).getString("description_rea");
-                                    maBase.ajouterRealisation(new Realisation(id_realisation, titre_rea, description_rea));
+                                    Integer nbjaime = 0;
+                                    maBase.ajouterRealisation(new Realisation(id_realisation, titre_rea, description_rea, nbjaime));
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
                             }
                             Toast.makeText(getApplicationContext(), "Importation terminée", Toast.LENGTH_LONG).show();
-                            btnImporter.setEnabled(false);
+                           // btnImporter.setEnabled(false);
                             Toast.makeText(getApplicationContext(), "vous pouvez pas importer un deuxième fois", Toast.LENGTH_LONG).show();
                         }
                         @Override

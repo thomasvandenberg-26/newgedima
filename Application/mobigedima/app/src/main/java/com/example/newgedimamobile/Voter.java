@@ -28,7 +28,7 @@ public class Voter extends AppCompatActivity {
         Intent i = getIntent();
         btnValide.setOnClickListener(listener_valider);
         btnVote = (Button) findViewById(R.id.vote);
-        btnVote.setOnClickListener(listener_vote);
+
 
 
     }
@@ -41,6 +41,14 @@ public class Voter extends AppCompatActivity {
                     String code_votant = editCode.getText().toString();
                     String mail = editMail.getText().toString();
                     String nom = editNom.getText().toString();
+                    if(code_votant != "") {
+                        if(mail !=""){
+                            if(nom !=""){
+                                Intent vote = new Intent(Voter.this, Vote.class);
+                                startActivity(vote);
+                            }
+                        }
+                    }
 
                 Votant v  = new Votant();
                 v.setCode(code_votant);
@@ -52,11 +60,6 @@ public class Voter extends AppCompatActivity {
             }
         }
     };
-    private View.OnClickListener listener_vote= new View.OnClickListener() {
-        public void onClick(View v) {
-            Intent vote = new Intent(Voter.this, Vote.class);
-            startActivity(vote);
-        }
-    };
+
 }
 

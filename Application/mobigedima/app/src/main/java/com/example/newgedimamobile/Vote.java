@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -31,7 +32,7 @@ public class Vote extends AppCompatActivity {
 
 
     private ArrayList<String> lesRealisations = new ArrayList<String>();
-    private String[] lesNbJaimes = {"1","2","3","4","5"};
+    private Integer[] lesNbJaimes = {1,2,3,4,5};
 //    private ArrayList<String> lesNbJaimes= new ArrayList<>();
 
 
@@ -65,9 +66,11 @@ public class Vote extends AppCompatActivity {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.btnValider:
-                    int nbJaime = Integer.parseInt(spinnerNbJaime.getSelectedItem().toString());
-                    int nbJaime2 = Integer.parseInt(spinnerNbJaime2.getSelectedItem().toString());
-                    int nbJaime3 = Integer.parseInt(spinnerNbJaime3.getSelectedItem().toString());
+                    Integer nbJaime = Integer.parseInt(spinnerNbJaime.getSelectedItem().toString());
+                    Integer nbJaime2 = Integer.parseInt(spinnerNbJaime2.getSelectedItem().toString());
+                    Integer nbJaime3 = Integer.parseInt(spinnerNbJaime3.getSelectedItem().toString());
+//                    Toast.makeText(getApplicationContext(), nbJaime, Toast.LENGTH_LONG).show();
+                    Log.i("nbJaime", String.valueOf(nbJaime));
                     int idreal = Integer.parseInt(spinnerRealisation.getSelectedItem().toString());
                     int idreal2 = Integer.parseInt(spinnerRealisation2.getSelectedItem().toString());
                     int idreal3 = Integer.parseInt(spinnerRealisation3.getSelectedItem().toString());
@@ -77,7 +80,8 @@ public class Vote extends AppCompatActivity {
                     r.setNbJaime(nbJaime3);
                     Log.i("Infos", r.toString());
                     bdd = new GedimaginationDAO(Vote.this);
-                    bdd.ModifierRealisation(Realisation uneRealisation);
+                    bdd.ModifierRealisation(r);
+                    Toast.makeText(getApplicationContext(),"MODIFICATION NB JAIME", Toast.LENGTH_LONG).show();
             }
 
         }
@@ -96,11 +100,11 @@ public class Vote extends AppCompatActivity {
 
         }
         spinnerRealisation.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, lesRealisations));
-        spinnerNbJaime.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, lesNbJaimes));
+        spinnerNbJaime.setAdapter(new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, lesNbJaimes));
         spinnerRealisation2.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, lesRealisations));
-        spinnerNbJaime2.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, lesNbJaimes));
+        spinnerNbJaime2.setAdapter(new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, lesNbJaimes));
         spinnerRealisation3.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,lesRealisations));
-        spinnerNbJaime3.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,lesNbJaimes));
+        spinnerNbJaime3.setAdapter(new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item,lesNbJaimes));
 
     }
 

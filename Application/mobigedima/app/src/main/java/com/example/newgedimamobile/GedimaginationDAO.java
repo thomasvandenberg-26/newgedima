@@ -48,7 +48,7 @@ public class GedimaginationDAO {
     }
     public void ModifierRealisation(Realisation uneRealisation){
         ContentValues v = new ContentValues();
-        v.put("nbjaime", uneRealisation.getNbJaime());
-        maBase.update("Realisation", v,"nbjaime = ?", new String[]{uneRealisation.getNbJaime().toString()});
+       // v.put("nbJaime", uneRealisation.getNbJaime());
+        maBase.update("Realisation", v,"nbJaime = ?", new Integer[]{Integer.parseInt(uneRealisation.getNbJaime())});
     }
 }

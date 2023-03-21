@@ -46,9 +46,10 @@ public class GedimaginationDAO {
         v.put("nom_votant", unVotant.getNom());
         maBase.insert("Votant", null,v);
     }
-    public void ModifierRealisation(Realisation uneRealisation){
-        ContentValues v = new ContentValues();
-       // v.put("nbJaime", uneRealisation.getNbJaime());
-        maBase.update("Realisation", v,"nbJaime = ?", new Integer[]{Integer.parseInt(uneRealisation.getNbJaime())});
+    public void ModifierRealisation(Integer id_rea, Integer nbJ){
+/*        ContentValues v = new ContentValues();
+        v.put("nbJaime", nbJ);
+        maBase.update("Realisation", v,"id_realisation = ?", new String[]{String.valueOf(id_rea)});*/
+        maBase.execSQL("UPDATE Realisation SET nbJaime = nbJaime+"+ nbJ + " where id_realisation ="+ id_rea+";");
     }
 }

@@ -74,13 +74,11 @@ public class Vote extends AppCompatActivity {
                     int idreal = Integer.parseInt(spinnerRealisation.getSelectedItem().toString());
                     int idreal2 = Integer.parseInt(spinnerRealisation2.getSelectedItem().toString());
                     int idreal3 = Integer.parseInt(spinnerRealisation3.getSelectedItem().toString());
-                    Realisation r = new Realisation();
-                    r.setNbJaime(nbJaime);
-                    r.setNbJaime(nbJaime2);
-                    r.setNbJaime(nbJaime3);
-                    Log.i("Infos", r.toString());
+
                     bdd = new GedimaginationDAO(Vote.this);
-                    bdd.ModifierRealisation(r);
+                    bdd.ModifierRealisation(idreal, nbJaime);
+                    bdd.ModifierRealisation(idreal2, nbJaime2);
+                    bdd.ModifierRealisation(idreal3, nbJaime3);
                     Toast.makeText(getApplicationContext(),"MODIFICATION NB JAIME", Toast.LENGTH_LONG).show();
             }
 

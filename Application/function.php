@@ -29,3 +29,13 @@ function GED_getAllRealisations(){
     }
 
 }
+function GED_updateRealisation(){
+    try{
+        $conn = connexionBase();
+        $requete="UPDATE realisation SET nbJaime where id_realisation =id_rea";
+
+    }
+    catch(Exception $e){
+        throw new Exception("GED_updateRealisation ". $e->getMessage());
+    }
+}

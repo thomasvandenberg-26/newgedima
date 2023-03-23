@@ -52,9 +52,4 @@ public class GedimaginationDAO {
         maBase.update("Realisation", v,"id_realisation = ?", new String[]{String.valueOf(id_rea)});*/
         maBase.execSQL("UPDATE Realisation SET nbJaime = nbJaime+"+ nbJ + " where id_realisation ="+ id_rea+";");
     }
-    public Cursor selectionnerNbJaimes(){
-       Cursor curseurContact= maBase.rawQuery("SELECT nbJaime from Realisation", new String[]{});
-       return curseurContact;
-
-    }
 }

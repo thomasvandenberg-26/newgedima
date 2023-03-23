@@ -25,3 +25,16 @@ include_once('function.php');
 		echo json_encode($lesRealisations);
 		http_response_code(200);
 	}
+	function postNbJaimes(){
+		$json = file_get_contents('php://input');
+		if(!empty($json)){
+         $obj = json_decode($json);
+		 $res = $obj->Voter;
+		 foreach($res as $unVote){
+			$id_rea = $unVote->id_rea;
+			$nbJaime = $unVote->nbJaime;
+			GED_updateRealisation($id_rea,$nbJaime);
+			
+		 }
+	}
+}

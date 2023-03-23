@@ -3,6 +3,7 @@ package com.example.newgedimamobile;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +30,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+
+import cz.msebera.android.httpclient.entity.StringEntity;
+import cz.msebera.android.httpclient.entity.mime.Header;
+
 public class MainActivity extends AppCompatActivity {
     private GedimaginationDAO maBase;
     private ArrayList<HashMap<String, String>> lesRealisations;
@@ -123,7 +128,74 @@ public class MainActivity extends AppCompatActivity {
         }
     };
     private View.OnClickListener listener_exporter= new View.OnClickListener() {
+        @SuppressLint("Range")
         public void onClick(View v) {
+            JSONArray jsonArray = new JSONArray();
+
+
+            maBase = new GedimaginationDAO(MainActivity.this);
+
+            Cursor curseurTous = maBase.selectionnerNbJaimes();
+
+            for(curseurTous.moveToFirst(); !curseurTous.isAfterLast(); curseurTous.moveToNext()){
+                JSONObject obj = new JSONObject(); // on crée un élément obj de type JSONObject
+
+                    try {
+                        obj.put("id_realisation", curseurTous.getInt(curseurTous.getColumnIndex("id_realisation")));
+                        obj.put("nbJaime", curseurTous.getInt(curseurTous.getColumnIndex("nbJaime")));
+                        jsonArray.put(obj);
+                    }
+                    catch (JSONException e){
+                        e.printStackTrace();
+
+
+                    }
+
+
+
+            }
+            curseurTous.close();
+            JSONObject fluxJSON = new JSONObject();
+            try{
+                fluxJSON.put("Vote",jsonArray);
+                Log.i("JSON : ", jsonArray.toString());
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            String url = "http://10.0.2.2/newgedima/Application/realisation.php";
+            AsyncHttpClient requete = new AsyncHttpClient();
+
+            try{
+                StringEntity entity = new StringEntity(fluxJSON.toString());
+                requete.post(MainActivity.this, url, entity, "application/json",new AsyncHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] responseBody) {
+
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] responseBody, Throwable error) {
+
+                    }
+
+                    public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+
+                        Log.i("Code response = ", String.valueOf(statusCode) + "Données envoyées = "
+                                + fluxJSON.toString());
+                        Toast.makeText(getApplicationContext(), "Exportation terminée ", Toast.LENGTH_LONG).show();
+                    }
+
+                    public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                        //super.onFailure(statusCode, headers, responseString, throwable);
+                        Log.i("Erreur", String.valueOf(statusCode) + "Erreur = " + error.toString());
+                        Toast.makeText(getApplicationContext(), "Echec de l'exportation' ", Toast.LENGTH_LONG).show();
+                    }
+                });
+
+            } catch ( UnsupportedEncodingException parseException) {
+                parseException.printStackTrace(); }
+
 
         }
     };

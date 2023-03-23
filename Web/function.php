@@ -33,3 +33,20 @@ function insertionRealisation($titre_rea,$description_rea,$date_rea,$date_partic
     }
 }
 
+function classement($titre_rea, $nbJaime){
+
+    $connexion = connexionBase();
+    $requete = "SELECT FROM realisation(`titre_rea`,`nbJaime`) ORDER BY(`nbJaime`) DESC";
+    $prep= $connexion->prepare($requete);
+    $prep->execute(([$titre_rea,$nbJaime]));
+    if($prep->fetch())
+    {
+        return 4;
+    }
+    else{
+        return 2; 
+    }
+
+
+
+}

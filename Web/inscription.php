@@ -11,27 +11,26 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="inscription.css">
     </head>
-    <body>
+    <body style="background-color: #121212"; >
       <header>
         </header>
       <div class="row">
     <div class="col-md-12">
-      <form action="inscription_traitement.php" method="post">
+    <form  action="inscription_traitement.php" method="post">
         <h1> Sign Up </h1>
         
         <fieldset>
 
         
-          
-        
+  
           <label for="name">Name:</label>
-          <input type="text" id="nom_util" name="nom_util"required>
+          <input type="text" id="nom_participant" name="nom_participant"required>
         
           <label for="email">Email:</label>
-          <input type="email" id="email_util" name="email_util" required>
+          <input type="email" id="email_participant" name="email_participant" required>
        
           <label for="password">Password:</label>
-          <input type="password" id="mdp_util" name="mdp_util" required>
+          <input type="password" id="mdp_participant" name="mdp_participant" required>
         
 
         <button type="submit" name="forminscription">Sign Up</button>

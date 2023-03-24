@@ -3,8 +3,8 @@ function connexionBase(){
 
    $serveur= "localhost"; 
    $bd="newgedima";
-   $login= "root";
-   $mdp= "";
+   $login= "Thomas_VANDENBERG";
+   $mdp= "10082426";
   
 
    try {
@@ -39,6 +39,24 @@ function classement($titre_rea, $nbJaime){
     $requete = "SELECT FROM realisation(`titre_rea`,`nbJaime`) ORDER BY(`nbJaime`) DESC";
     $prep= $connexion->prepare($requete);
     $prep->execute(([$titre_rea,$nbJaime]));
+    if($prep->fetch())
+    {
+        return 4;
+    }
+    else{
+        return 2; 
+    }
+
+
+
+}
+
+function inscription($nom_participant, $email_participant, $mdp_participant )
+{
+    $connexion = connexionBase();
+    $requete = "INSERT INTO participants(nom_participant,email_participant,mdp_participant) VALUES(?,?,?)" ;
+    $prep= $connexion->prepare($requete);
+    $prep->execute(([$nom_participant,$email_participant,$mdp_participant]));
     if($prep->fetch())
     {
         return 4;

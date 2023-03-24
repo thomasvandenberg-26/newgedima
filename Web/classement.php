@@ -139,11 +139,11 @@ h2 a {
 }
 
 .container td:hover {
-  background-color: #FFF842;
+  background-color: #A5FFC9;
   color: #403E10;
   font-weight: bold;
   
-  box-shadow: #7F7C21 -1px 1px, #7F7C21 -2px 2px, #7F7C21 -3px 3px, #7F7C21 -4px 4px, #7F7C21 -5px 5px, #7F7C21 -6px 6px;
+  box-shadow: #0085B2 -1px 1px, #0085B2 -2px 2px, #0085B2 -3px 3px, #0085B2 -4px 4px, #0085B2 -5px 5px, #0085B2 -6px 6px;
   transform: translate3d(6px, -6px, 0);
   
   transition-delay: 0s;

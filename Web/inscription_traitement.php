@@ -1,5 +1,7 @@
+<h1>inscription</h1>
 <?php
 include 'function.php';
+
 echo "test1"; 
 if(isset($_POST['forminscription']))
 {
@@ -16,7 +18,7 @@ if(isset($_POST['forminscription']))
     else{
        ?>
 
-    <p> <?php echo "il manque des informations pour pouvoir vous inscrire" ?></p>;
+    <p> <?php echo "il manque des informations pour pouvoir vous inscrire" ?></p>
     <?php 
     }
 

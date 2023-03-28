@@ -160,15 +160,16 @@ public class MainActivity extends AppCompatActivity {
                 fluxJSON.put("Vote",jsonArray);
                 Log.i("JSON : ", jsonArray.toString());
 
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             String url = "http://10.0.2.2/newgedima/Application/realisation.php";
+
             AsyncHttpClient requete = new AsyncHttpClient();
 
             try{
                 StringEntity entity = new StringEntity(fluxJSON.toString());
-                requete.post(MainActivity.this, url, entity, "application/json",new AsyncHttpResponseHandler() {
+                requete.put(MainActivity.this, url, entity, "application/json",new AsyncHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] responseBody) {
 

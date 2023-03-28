@@ -29,7 +29,7 @@ function GED_getAllRealisations(){
     }
 
 }
-function GED_updateRealisation(){
+function GED_updateRealisation($id_rea,$nbJaime){
     try{
         $conn = connexionBase();
         $requete="UPDATE realisation SET nbJaime where id_realisation =id_rea";

@@ -7,6 +7,10 @@ include_once('function.php');
 			case 'GET':
 				getRealisations();
 				break;
+			case'PUT':
+				postNbJaimes();
+				break; 
+			   
 			default:
 				http_response_code(405);
 				break;

@@ -31,14 +31,46 @@ include_once('function.php');
 	}
 	function postNbJaimes(){
 		$json = file_get_contents('php://input');
+		$errJSON= true; 
 		if(!empty($json)){
-         $obj = json_decode($json);
-		 $res = $obj->Voter;
-		 foreach($res as $unVote){
-			$id_rea = $unVote->id_rea;
-			$nbJaime = $unVote->nbJaime;
-			GED_updateRealisation($id_rea,$nbJaime);
 			
-		 }
+			$obj = json_decode($json);
+			if(property_exists($obj,"Vote")){
+		
+			$res = $obj->Vote;
+			$errUpdate =false; 
+			foreach($res as $unVote){
+		
+				if(property_exists($unVote,"id_realisation") && property_exists($unVote,"nbJaime"))
+				{ 		echo "if";
+					$id_rea = $unVote->id_realisation;
+					$nbJaime = $unVote->nbJaime;
+					$retourUpdate= GED_updateRealisation($id_rea,$nbJaime);
+					$errJSON =false; 
+				
+				if($retourUpdate == 1)
+				{
+					$messageInfo .= "Realisation" . $id_rea. " modifié avec succès. ";
+				
+				}
+				else{
+					$messageInfo = "Erreur"; 
+					$errUpdate = True; 
+				}
+				$errJSON = false; 
+			   }
+			 }
+			 if($errUpdate == false) {
+				header('Content-Type: application/json');
+				echo json_encode($messageInfo);
+				http_response_code(200);
+			}
+		}
+		
+		if ($errJSON){
+			header('Content-Type: application/json');
+			echo json_encode("JSON Object empty or invalid");
+			http_response_code(400);
+		}
 	}
-}
+	}	

@@ -32,8 +32,12 @@ function GED_getAllRealisations(){
 function GED_updateRealisation($id_rea,$nbJaime){
     try{
         $conn = connexionBase();
-        $requete="UPDATE realisation SET nbJaime where id_realisation =id_rea";
-
+        $requete="UPDATE realisation SET nbJaime=:nbJ where id_realisation =:id_rea";
+        $prep = $conn->prepare($requete);
+        $prep->bindValue(':id_rea', $id_rea, PDO::PARAM_STR); 
+         $prep->bindValue(':nbJ', $nbJaime, PDO::PARAM_STR); 
+         	$ok =$prep->execute();
+         return $prep->rowCount();
     }
     catch(Exception $e){
         throw new Exception("GED_updateRealisation ". $e->getMessage());

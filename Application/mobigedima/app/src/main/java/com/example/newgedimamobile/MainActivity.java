@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
             JSONObject fluxJSON = new JSONObject();
             try{
                 fluxJSON.put("Vote",jsonArray);
-                Log.i("JSON : ", jsonArray.toString());
+                Log.i("JSON : ", fluxJSON.toString());
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -172,30 +172,23 @@ public class MainActivity extends AppCompatActivity {
                 requete.put(MainActivity.this, url, entity, "application/json",new AsyncHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] responseBody) {
-
+                        Log.i("Code response = ",String.valueOf(statusCode)+ "Données envoyées = "+fluxJSON.toString());
+                        Toast.makeText(getApplicationContext(), "Exportation terminée ", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
                     public void onFailure(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] responseBody, Throwable error) {
-
-                    }
-
-                    public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-
-                        Log.i("Code response = ", String.valueOf(statusCode) + "Données envoyées = "
-                                + fluxJSON.toString());
-                        Toast.makeText(getApplicationContext(), "Exportation terminée ", Toast.LENGTH_LONG).show();
-                    }
-
-                    public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                        //super.onFailure(statusCode, headers, responseString, throwable);
                         Log.i("Erreur", String.valueOf(statusCode) + "Erreur = " + error.toString());
-                        Toast.makeText(getApplicationContext(), "Echec de l'exportation' ", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),"Echec de l'exportation",Toast.LENGTH_LONG).show();
                     }
+
+
                 });
 
             } catch ( UnsupportedEncodingException parseException) {
-                parseException.printStackTrace(); }
+                parseException.printStackTrace();
+            }
+
 
 
         }

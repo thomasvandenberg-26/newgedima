@@ -33,12 +33,29 @@ function insertionRealisation($titre_rea,$description_rea,$date_rea,$date_partic
     }
 }
 
-function classement($titre_rea, $nbJaime){
-
+function classement(){
+   try{
     $connexion = connexionBase();
-    $requete = "SELECT FROM realisation(`titre_rea`,`nbJaime`) ORDER BY(`nbJaime`) DESC";
+    $requete = "SELECT `titre_rea`,`nbJaime` FROM realisation ORDER BY`nbJaime` DESC LIMIT 5; ";
     $prep= $connexion->prepare($requete);
-    $prep->execute(([$titre_rea,$nbJaime]));
+    $prep->execute();
+    $res = $prep->fetchAll(PDO::FETCH_ASSOC);
+    
+   }
+   catch(PDOException $e)
+   {
+        print $e;
+        die(); 
+   }
+   return $res; 
+}
+
+function inscription($nom_participant, $email_participant, $mdp_participant )
+{
+    $connexion = connexionBase();
+    $requete = "INSERT INTO participants(nom_participant,email_participant,mdp_participant) VALUES(?,?,?)" ;
+    $prep= $connexion->prepare($requete);
+    $prep->execute([$nom_participant,$email_participant,$mdp_participant]);
     if($prep->fetch())
     {
         return 4;
@@ -50,13 +67,12 @@ function classement($titre_rea, $nbJaime){
 
 
 }
+function connexion($mail, $mdp){
 
-function inscription($nom_participant, $email_participant, $mdp_participant )
-{
     $connexion = connexionBase();
-    $requete = "INSERT INTO participants(nom_participant,email_participant,mdp_participant) VALUES(?,?,?)" ;
-    $prep= $connexion->prepare($requete);
-    $prep->execute(([$nom_participant,$email_participant,$mdp_participant]));
+    $requete = "SELECT participants(email_participant,mdp_participant) WHERE email_participant = $mail AND mdp_participant= $mdp";
+    $prep = $connexion->prepare($requete);
+    $prep->execute([$mail,$mdp]);
     if($prep->fetch())
     {
         return 4;
@@ -66,5 +82,34 @@ function inscription($nom_participant, $email_participant, $mdp_participant )
     }
 
 
+}
+function getIdUtilisateur($mail)
+{
+    $connexion =  connexionBase();
+    $requete = " SELECT participants(id_participant) WHERE email_participant = $mail";
+    $prep = $connexion->prepare($requete);
+    $prep->execute([$mail]);
+    if($prep->fetch()){
+        return 4;
+    }
+    else{
+        return 2;
+    }
+}
+
+function verificationParticipation($id)
+{
+    $connexion =  connexionBase();
+    $requete = "SELECT titre_rea, description_rea from realisation where R.id_participant = ?";
+    $prep = $connexion->prepare($requete);
+    $prep->execute([$id]);
+    if($prep->fetch())
+    {
+        return 4;
+    }       
+    else
+    {
+        return 2;
+    }
 
 }

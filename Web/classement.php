@@ -1,38 +1,27 @@
 <h1 style=" margin-top: 5%; margin-bottom: 5%;">Gedimagination Classement</h1>
 
+<?php include 'function.php' ?>
 <table class="container">
 	<thead>
 		<tr>
-			<th><h1>Nom Realisation</h1></th>
+			<th><h1>Nom Realisation</h1></th> <!-- colonne !-->
 			<th><h1>Score</h1></th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr>
-			<td>Realisation 1</td>
-			<td>9518</td>
+		<tr> 
+			<?php   $res = classement();
+		
+                for($i = 0; $i < count($res); $i++ )
+                {?>
+		
+			<td style="color: white;"><?php echo ($res[$i]['titre_rea'])?></td> <!-- ligne !-->
+			<td><?php echo ($res[$i]['nbJaime']) ?></td>
 		
 		</tr>
-		<tr>
-			<td>Realisation 2</td>
-			<td>7326</td>
-			
-		</tr>
-		<tr>
-			<td>Realisation 3</td>
-			<td>4162</td>
-			
-		</tr>
-    <tr>
-			<td>Realisation 4</td>
-			<td>3654</td>
-		</tr>
-    <tr>
-			<td>Realisation 5</td>
-			<td>2002</td>
 		
-		</tr>
-    
+  
+    <?php } ?>
 	</tbody>
 </table>
 
@@ -103,7 +92,7 @@ h2 a {
 .container {
 	  text-align: left;
 	  overflow: hidden;
-	  width: 80%;
+	  width: 60%;
 	  margin: 0 auto;
   display: table;
   padding: 0 0 8em 0;
@@ -114,7 +103,9 @@ h2 a {
 	  padding-top: 2%;
   padding-left:2%;  
 }
-
+.container td{
+	width: 40%; 
+}
 /* Background-color of the odd rows */
 .container tr:nth-child(odd) {
 	  background-color: #323C50;

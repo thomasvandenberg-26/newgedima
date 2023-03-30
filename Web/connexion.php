@@ -9,16 +9,16 @@
 <body>
 <div class="login-box">
   <h2>Login</h2>
-  <form>
+  <form id="login" action="traitement_connexion.php" method="post">
     <div class="user-box">
-      <input type="text" name="" required="">
+      <input type="text" name="email_participant" required="">
       <label>Username</label>
     </div>
     <div class="user-box">
-      <input type="password" name="" required="">
+      <input type="password" name="mdp_participant" required="">
       <label>Password</label>
     </div>
-    <a href="#">
+    <a href="traitement_connexion.php" id='formconnexion' name='formconnexion'>
       <span></span>
       <span></span>
       <span></span>

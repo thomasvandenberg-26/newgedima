@@ -3,9 +3,9 @@
 include 'function.php';
 
 echo "test1"; 
-if(isset($_POST['forminscription']))
+if(isset($_POST['nom_participant']) and isset($_POST['email_participant']) and isset($_POST['mdp_participant']))
 {
-
+  echo "test2"; 
     $nom_participant = $_POST['nom_participant'];
     $email_participant = $_POST['email_participant'];
     $mdp_participant = $_POST['mdp_participant'];

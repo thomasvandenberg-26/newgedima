@@ -1,11 +1,13 @@
 <?php
 $data = [];
+session_start(); 
 include 'function.php';
-echo "test"; 
+
 if (!empty($_POST['titre_rea']) and !empty($_POST['description_rea']) and !empty($_POST['date_rea']) and !empty($_POST['date_participation']) and !empty($_FILES['upfile'])) {
-   $date_debut ="2023-02-28";
-   $date_fin = "2023-03-09";
+   $date_debut ="2023-04-06";
+   $date_fin = "2023-04-10";
    $date_now =  date("Y-m-d");
+   $id =  $_SESSION["id"];
    if ($date_now < $date_debut || $date_now > $date_fin)
    {
       echo "le concours a n'a pas commencé ou est déja fini";
@@ -37,7 +39,7 @@ if (!empty($_POST['titre_rea']) and !empty($_POST['description_rea']) and !empty
       echo 'extension du fichier : incompatible';
       }else{
       $resultat = move_uploaded_file($_FILES['upfile']['tmp_name'], $newfilename);
-      insertionRealisation($titre_rea, $description_rea, $date_rea, $date_participation, $fichier);
+      insertionRealisation($id,$titre_rea, $description_rea, $date_rea, $date_participation, $fichier);
       echo 'vous avez posté votre réalisation';
        }
    

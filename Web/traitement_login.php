@@ -3,20 +3,24 @@
 session_start(); 
 include 'function.php';
 
-echo "test"; 
 
+echo $_POST['email_participant'];echo "<br><br>";
+echo $_POST['mdp_participant'];echo"<br><br>";
+if(isset($_POST['email_participant']) and isset($_POST['mdp_participant'])) {
 
-if(isset($_POST['formconnexion'])){
-
-    echo $_POST['email_participant'];
-    echo "test2"; 
+    echo $_POST['email_participant'] . "<br>";
     $mdp = $_POST['mdp_participant'];
     $mail = $_POST['email_participant'];
     $_SESSION['email_participant'] = $mail;
     $_SESSION['mdp_participant'] = $mdp;
     
+echo "e:" . $mail; 
+    echo  $mdp; echo "<br";
     $id = getIdUtilisateur($mail);
 
+
+    
+    echo $id; 
    if(connexion($mail,$mdp)==4)
    {
     echo "OUI";
@@ -36,3 +40,4 @@ if(isset($_POST['formconnexion'])){
     echo "cet utilisateur n'existe pas";
    }
 }
+

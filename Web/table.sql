@@ -7,13 +7,13 @@ CREATE TABLE `participants` (
 
 CREATE TABLE `realisation` (
   `id_realisation` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  'id_participant' int(11) NOT NULL,
+  `id_participant` int(11) NOT NULL,
   `titre_rea` varchar(500) DEFAULT NULL,
   `description_rea` varchar(500) DEFAULT NULL,
   `date_rea` date DEFAULT NULL,
   `date_participation` date DEFAULT NULL,
   `url_rea` varchar(500) NOT NULL,
-  `nbJaime` int(11) NOT NULL
+  `nbJaime` int(11) NOT NULL,
   
   CONSTRAINT FK_participant FOREIGN KEY(id_participant )REFERENCES participants(id_participant)
 

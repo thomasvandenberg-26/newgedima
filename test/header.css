@@ -3,12 +3,10 @@ header {
   width: 100%;
   padding: 1% 5%;
 }
-
 header li {
   margin-left: 25%;
   margin-top: 3%;
 }
-
 header li a {
   float: left;
   font-size: 28px;
@@ -20,9 +18,7 @@ header li a {
   margin-left: 12px;
   opacity: 100%;
 }
-
 header a:hover {
   color: #0085B2;
   text-decoration: underline;
-}
-/*# sourceMappingURL=header.css.map */
+}/*# sourceMappingURL=header.css.map */

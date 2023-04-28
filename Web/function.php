@@ -109,3 +109,27 @@ function verificationParticipation($id)
     }
 
 }
+
+function parametresdates($date_debut_concours,$date_fin_concours){
+    try{
+    $connexion = connexionBase();
+    $requete = "INSERT INTO parametres(date_debut_concours,date_fin_concours) VALUES (?,?)";
+    $prep = $connexion->prepare($requete);
+    $prep->execute([$date_debut_concours,$date_fin_concours]);
+    if($prep->fetch())
+    {
+        return 4;
+    }       
+    else
+    {
+        return 2;
+    }
+    }
+    catch(PDOException $e)
+    {
+        return $e; 
+    }
+
+
+
+}

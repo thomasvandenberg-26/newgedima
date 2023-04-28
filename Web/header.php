@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="css/header.css" media="screen" type="text/css" />
+<link rel="stylesheet" href= "css/header.css" media="screen" type="text/css" />
 
 <header>
                 <nav class="navbar navbar-inverse">
@@ -13,9 +13,13 @@
             <li><a href="login.php">Connexion </a></li>
             <li><a href="inscription.php">Inscription</a></li>
             <li><a href="profil.php">profil</a></li>
+            <li><a href="parametres.php">parametres</a></li>
 
 
           </ul>
         </div>
       </nav>
 </header>
+<style>
+  
+</style>

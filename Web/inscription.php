@@ -22,7 +22,14 @@
         <fieldset>
 
         
-  
+        <label for="pet-select">Choose a pet:</label>
+
+<select name="statut" id="pet-select">
+    <option value="">--Choisissez votre statut--</option>
+    <option value="participant">participant</option>
+    <option value="gerant">gerant</option>
+</select>
+
           <label for="name">Name:</label>
           <input type="text" id="nom_participant" name="nom_participant"required>
         

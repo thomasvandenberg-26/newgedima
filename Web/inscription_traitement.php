@@ -11,10 +11,13 @@ echo "<br>";
 echo recupererDateFin(); 
 echo "<br>"; 
 echo "test1"; 
-if(isset($_POST['nom_participant']) and isset($_POST['email_participant']) and isset($_POST['mdp_participant']))
+if(isset($_POST['nom_participant']) and isset($_POST['statut']) and isset($_POST['email_participant']) and isset($_POST['mdp_participant']))
 {
   echo "test2"; 
+  
     $nom_participant = $_POST['nom_participant'];
+    $statut = $_POST['statut'];
+    echo $statut; 
     $email_participant = $_POST['email_participant'];
     $mdp_participant = $_POST['mdp_participant'];
 
@@ -23,7 +26,7 @@ if(isset($_POST['nom_participant']) and isset($_POST['email_participant']) and i
       echo "test"; 
      
        die();
-        if(inscription($nom_participant,$email_participant, $mdp_participant)==4){
+        if(inscription($nom_participant,$statut,$email_participant, $mdp_participant)==4){
         header("Location:login.php");
         
       }

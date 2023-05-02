@@ -50,12 +50,12 @@ function classement(){
    return $res; 
 }
 
-function inscription($nom_participant, $email_participant, $mdp_participant )
+function inscription($nom_participant,$statut, $email_participant, $mdp_participant )
 {
     $connexion = connexionBase();
     $requete = "INSERT INTO participants(nom_participant,email_participant,mdp_participant) VALUES(?,?,?)" ;
     $prep= $connexion->prepare($requete);
-    $prep->execute([$nom_participant,$email_participant,$mdp_participant]);
+    $prep->execute([$nom_participant,$statut,$email_participant,$mdp_participant]);
     if($prep->fetch())
     {
         return 4;

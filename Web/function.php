@@ -110,20 +110,12 @@ function verificationParticipation($id)
 
 }
 
-function parametresdates($date_debut_concours,$date_fin_concours){
+function parametresdates($date_debut,$date_fin){
     try{
     $connexion = connexionBase();
     $requete = "INSERT INTO parametres(date_debut_concours,date_fin_concours) VALUES (?,?)";
     $prep = $connexion->prepare($requete);
-    $prep->execute([$date_debut_concours,$date_fin_concours]);
-    if($prep->fetch())
-    {
-        return 4;
-    }       
-    else
-    {
-        return 2;
-    }
+    $prep->execute([$date_debut,$date_fin]);
     }
     catch(PDOException $e)
     {
@@ -132,4 +124,32 @@ function parametresdates($date_debut_concours,$date_fin_concours){
 
 
 
+}
+
+function recupererDateDebut(){
+    try{
+        $connexion = connexionBase();
+        $requete = " SELECT date_debut_concours FROM parametres";
+        $prep = $connexion->prepare($requete);
+        $res = $prep->fetchColumn(PDO::FETCH_ASSOC);
+    }
+    catch(PDOException $e)
+    {
+        return $e; 
+    }
+    return $res; 
+}
+function recupererDateFin()
+{
+    try{
+        $connexion = connexionBase();
+        $requete = " SELECT date_fin_concours FROM parametres";
+        $prep = $connexion->prepare($requete);
+        $res = $prep->fetchColumn(PDO::FETCH_ASSOC);
+    }
+    catch(PDOException $e)
+    {
+        return $e; 
+    }
+    return $res; 
 }

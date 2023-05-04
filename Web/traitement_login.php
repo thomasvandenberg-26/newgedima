@@ -13,14 +13,17 @@ if(isset($_POST['email_usr']) and isset($_POST['mdp_usr'])) {
     $mail = $_POST['email_usr'];
     $_SESSION['email_usr'] = $mail;
     $_SESSION['mdp_usr'] = $mdp;
-    
-echo "e:" . $mail; 
-    echo  $mdp; echo "<br";
+   // echo "coucou";
+//echo "e:" . $mail; 
+  //  echo  $mdp; echo "<br";
     $id = getIdUtilisateur($mail);
-
-
-    $s = getStatut($id); 
-
+    echo "id" . $id['id_usr']; 
+   
+    $s = getStatut($id['id_usr']); 
+    echo "statut : " . $s['statut_usr'];
+    
+    
+    
     
     echo $id; 
    if(connexion($mail,$mdp)==4)
@@ -28,7 +31,7 @@ echo "e:" . $mail;
             if($s == "gerant")
             {
             header("Location: parametres.php"); 
-            die(); 
+            
             }
             else {
                 echo "OUI";

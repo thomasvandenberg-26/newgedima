@@ -8,6 +8,7 @@ if (!empty($_POST['titre_rea']) and !empty($_POST['description_rea']) and !empty
    $date_fin = recupererDateFin(); 
    $today =  date("j-m-y");
    $id =  $_SESSION["id"];
+
    if ($today >= recupererDateDebut() and $today <= recupererDateFin()){
       echo "le concours a n'a pas commencé ou est déja fini";
    }

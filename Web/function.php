@@ -91,7 +91,8 @@ function getIdUtilisateur($mail)
     $prep = $connexion->prepare($requete);
     $prep->execute([$mail]);
     $resultat = $prep->fetch(PDO::FETCH_ASSOC);
-    return $resultat['id_usr'];
+
+    return $resultat;
 }
 
 function verificationParticipation($id)
@@ -160,8 +161,11 @@ function getStatut($id)
     try{
         $connexion = connexionBase();
         $requete = " SELECT statut_usr FROM users WHERE id_usr = $id";
-        $prep = $connexion->prepare($requete);
-        $res = $prep->fetchColumn(PDO::FETCH_ASSOC);
+        $prep = $connexion->prepare($requete); 
+        
+        $prep->execute($id);
+        $res = $prep->fetch(PDO::FETCH_ASSOC);
+      
     }
     catch(PDOException $e)
     {

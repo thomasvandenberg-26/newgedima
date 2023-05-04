@@ -13,28 +13,19 @@ echo "<br>";
 echo recupererDateFin(); 
 echo "<br>"; 
 echo "test1"; 
-if(isset($_POST['nom_participant'])  and isset($_POST['email_participant']) and isset($_POST['mdp_participant']) and isset($_POST['statut']))
+if(isset($_POST['nom_usr'])  and isset($_POST['email_usr']) and isset($_POST['mdp_usr']))
 {
   echo "test2"; 
     
-    $nom_participant = $_POST['nom_participant'];
-    $email_participant = $_POST['email_participant'];
-    $mdp_participant = $_POST['mdp_participant'];
-    $statut = $_POST['statut'];
+    $nom_usr = $_POST['nom_usr'];
+    $email_usr = $_POST['email_usr'];
+    $mdp_usr = $_POST['mdp_usr'];
+    $statut = "participant"; 
 
     
 
-      echo "test"; 
-      if($today >= recupererDateDebut() and $today <= recupererDateFin())
-      {
-        echo "test4"; 
-        inscription($nom_participant,$email_participant, $mdp_participant,$statut); 
-      }
-      else
-      {
-        $erreur = "le concours n'a pas commencé ou est déjà fini";
-        echo $erreur; 
-      }
+     
+        inscription($nom_usr,$email_usr, $mdp_usr,$statut); 
       
 
   }

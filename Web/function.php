@@ -50,13 +50,13 @@ function classement(){
    return $res; 
 }
 
-function inscription($nom_usr, $email_usr, $mdp_usr,$statut_usr )
+function inscription($nom_usr, $email_usr, $mdp_usr, $statut)
 {
     
     $connexion = connexionBase();
-    $requete = "INSERT INTO users(nom_usr,email_usr,mdp_usr,statut ) VALUES(?,?,?,?)" ;
+    $requete = "INSERT INTO users(nom_usr,email_usr,mdp_usr,statut_usr ) VALUES(?,?,?,?)" ;
     $prep= $connexion->prepare($requete);
-    $prep->execute([$nom_usr,$email_usr,$mdp_usr,$statut_usr]);
+    $prep->execute([$nom_usr,$email_usr,$mdp_usr, $statut]);
     $prep->fetch();
     if($prep->fetch())
     {
@@ -145,6 +145,21 @@ function recupererDateFin()
     try{
         $connexion = connexionBase();
         $requete = " SELECT date_fin_concours FROM parametres";
+        $prep = $connexion->prepare($requete);
+        $res = $prep->fetchColumn(PDO::FETCH_ASSOC);
+    }
+    catch(PDOException $e)
+    {
+        return $e; 
+    }
+    return $res; 
+}
+
+function getStatut($id)
+{
+    try{
+        $connexion = connexionBase();
+        $requete = " SELECT statut_usr FROM users WHERE id_usr = $id";
         $prep = $connexion->prepare($requete);
         $res = $prep->fetchColumn(PDO::FETCH_ASSOC);
     }

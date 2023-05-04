@@ -21,23 +21,16 @@
         
         <fieldset>
 
-        
-        <label for="pet-select"></label>
 
-<select name="statut" id="pet-select">
-    <option value="">--Choisissez votre statut--</option>
-    <option value="participant">participant</option>
-    <option value="gerant">gerant</option>
-</select>
 
           <label for="name">Name:</label>
-          <input type="text" id="nom_participant" name="nom_participant"required>
+          <input type="text" id="nom_usr" name="nom_usr"required>
         
           <label for="email">Email:</label>
-          <input type="email" id="email_participant" name="email_participant" required>
+          <input type="email" id="email_usr" name="email_usr" required>
        
           <label for="password">Password:</label>
-          <input type="password" id="mdp_participant" name="mdp_participant" required>
+          <input type="password" id="mdp_usr" name="mdp_usr" required>
         
 
         <button type="submit" name="forminscription">Sign Up</button>

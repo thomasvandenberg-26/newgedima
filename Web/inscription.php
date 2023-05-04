@@ -22,7 +22,7 @@
         <fieldset>
 
         
-        <label for="pet-select">Choose a pet:</label>
+        <label for="pet-select"></label>
 
 <select name="statut" id="pet-select">
     <option value="">--Choisissez votre statut--</option>

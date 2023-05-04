@@ -4,12 +4,11 @@ session_start();
 include 'function.php';
 
 if (!empty($_POST['titre_rea']) and !empty($_POST['description_rea']) and !empty($_POST['date_rea']) and !empty($_POST['date_participation']) and !empty($_FILES['upfile'])) {
-   $date_debut ="2023-04-06";
-   $date_fin = "2023-04-10";
-   $date_now =  date("Y-m-d");
+   $date_debut = recupererDateDebut();
+   $date_fin = recupererDateFin(); 
+   $today =  date("j-m-y");
    $id =  $_SESSION["id"];
-   if ($date_now < $date_debut || $date_now > $date_fin)
-   {
+   if ($today >= recupererDateDebut() and $today <= recupererDateFin()){
       echo "le concours a n'a pas commencé ou est déja fini";
    }
    else{
@@ -46,7 +45,7 @@ if (!empty($_POST['titre_rea']) and !empty($_POST['description_rea']) and !empty
    }
   
 }
-}
 
+}
    
 ?>

@@ -5,17 +5,17 @@
     <form action="traitement_login.php" method="POST" class="form login">
 
       <div class="form__field">
-        <label for="email_participant"><svg class="icon">
+        <label for="email_usr"><svg class="icon">
             <use xlink:href="#icon-user"></use>
           </svg><span class="hidden">Email</span></label>
-        <input autocomplete="email" id="email_participant" name="email_participant" type="text"class="form__input" placeholder="Username" required>
+        <input autocomplete="email" id="email_usr" name="email_usr" type="text"class="form__input" placeholder="Username" required>
       </div>
 
       <div class="form__field">
-        <label for="mdp_participant"><svg class="icon">
+        <label for="mdp_usr"><svg class="icon">
             <use xlink:href="#icon-lock"></use>
           </svg><span class="hidden">Password</span></label>
-        <input id="mdp_participant" name="mdp_participant" type="password" name="mdp_participant" class="form__input" placeholder="Password" required>
+        <input id="mdp_usr" name="mdp_usr" type="password" name="mdp_usr" class="form__input" placeholder="Password" required>
       </div>
 
       <div class="form__field">

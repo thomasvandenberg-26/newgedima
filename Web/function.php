@@ -18,12 +18,12 @@ function connexionBase(){
     }
 }
 
-function insertionRealisation($id_participant,$titre_rea,$description_rea,$date_rea,$date_participation,$url_rea){
+function insertionRealisation($id_usr,$titre_rea,$description_rea,$date_rea,$date_participation,$url_rea){
 
     $connexion = connexionBase();
-    $requete = "INSERT INTO realisation(`id_participant`,`titre_rea`,`description_rea`,`date_rea`,`date_participation`,`url_rea`) VALUES (?,?,?,?,?,?)";
+    $requete = "INSERT INTO realisation(`id_usr`,`titre_rea`,`description_rea`,`date_rea`,`date_participation`,`url_rea`) VALUES (?,?,?,?,?,?)";
     $prep= $connexion->prepare($requete);
-    $prep->execute([$id_participant,$titre_rea,$description_rea,$date_rea,$date_participation,$url_rea]);
+    $prep->execute([$id_usr,$titre_rea,$description_rea,$date_rea,$date_participation,$url_rea]);
     if($prep->fetch())
     {
         return 4;
@@ -50,27 +50,28 @@ function classement(){
    return $res; 
 }
 
-function inscription($nom_participant, $email_participant, $mdp_participant )
+function inscription($nom_usr, $email_usr, $mdp_usr, $statut)
 {
+    
     $connexion = connexionBase();
-    $requete = "INSERT INTO participants(nom_participant,email_participant,mdp_participant) VALUES(?,?,?)" ;
+    $requete = "INSERT INTO users(nom_usr,email_usr,mdp_usr,statut_usr ) VALUES(?,?,?,?)" ;
     $prep= $connexion->prepare($requete);
-    $prep->execute([$nom_participant,$email_participant,$mdp_participant]);
+    $prep->execute([$nom_usr,$email_usr,$mdp_usr, $statut]);
+    $prep->fetch();
     if($prep->fetch())
     {
-        return 4;
+        return 1;
     }
     else{
-        return 2; 
+        return 0; 
     }
-
-
-
 }
+    
+
 function connexion($mail, $mdp){
 
     $connexion = connexionBase();
-    $requete = "SELECT email_participant, mdp_participant FROM participants WHERE email_participant = ? AND mdp_participant= ?";
+    $requete = "SELECT email_usr, mdp_usr FROM users WHERE email_usr = ? AND mdp_usr= ?";
     $prep = $connexion->prepare($requete);
     $prep->execute([$mail,$mdp]);
     if($prep->fetch())
@@ -86,17 +87,17 @@ function connexion($mail, $mdp){
 function getIdUtilisateur($mail)
 {
     $connexion =  connexionBase();
-    $requete = " SELECT id_participant FROM participants WHERE email_participant = ?";
+    $requete = " SELECT id_usr FROM users WHERE email_usr = ?";
     $prep = $connexion->prepare($requete);
     $prep->execute([$mail]);
     $resultat = $prep->fetch(PDO::FETCH_ASSOC);
-    return $resultat['id_participant'];
+    return $resultat['id_usr'];
 }
 
 function verificationParticipation($id)
 {
     $connexion =  connexionBase();
-    $requete = "SELECT titre_rea, description_rea from realisation where id_participant = ?";
+    $requete = "SELECT titre_rea, description_rea from realisation where id_usr = ?";
     $prep = $connexion->prepare($requete);
     $prep->execute([$id]);
     if($prep->fetch())
@@ -110,20 +111,12 @@ function verificationParticipation($id)
 
 }
 
-function parametresdates($date_debut_concours,$date_fin_concours){
+function parametresdates($date_debut,$date_fin){
     try{
     $connexion = connexionBase();
     $requete = "INSERT INTO parametres(date_debut_concours,date_fin_concours) VALUES (?,?)";
     $prep = $connexion->prepare($requete);
-    $prep->execute([$date_debut_concours,$date_fin_concours]);
-    if($prep->fetch())
-    {
-        return 4;
-    }       
-    else
-    {
-        return 2;
-    }
+    $prep->execute([$date_debut,$date_fin]);
     }
     catch(PDOException $e)
     {
@@ -132,4 +125,47 @@ function parametresdates($date_debut_concours,$date_fin_concours){
 
 
 
+}
+
+function recupererDateDebut(){
+    try{
+        $connexion = connexionBase();
+        $requete = " SELECT date_debut_concours FROM parametres";
+        $prep = $connexion->prepare($requete);
+        $res = $prep->fetchColumn(PDO::FETCH_ASSOC);
+    }
+    catch(PDOException $e)
+    {
+        return $e; 
+    }
+    return $res; 
+}
+function recupererDateFin()
+{
+    try{
+        $connexion = connexionBase();
+        $requete = " SELECT date_fin_concours FROM parametres";
+        $prep = $connexion->prepare($requete);
+        $res = $prep->fetchColumn(PDO::FETCH_ASSOC);
+    }
+    catch(PDOException $e)
+    {
+        return $e; 
+    }
+    return $res; 
+}
+
+function getStatut($id)
+{
+    try{
+        $connexion = connexionBase();
+        $requete = " SELECT statut_usr FROM users WHERE id_usr = $id";
+        $prep = $connexion->prepare($requete);
+        $res = $prep->fetchColumn(PDO::FETCH_ASSOC);
+    }
+    catch(PDOException $e)
+    {
+        return $e; 
+    }
+    return $res; 
 }

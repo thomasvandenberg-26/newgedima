@@ -22,7 +22,7 @@ function insertionRealisation($id_usr,$titre_rea,$description_rea,$date_rea,$dat
 
     $connexion = connexionBase();
     $requete = "INSERT INTO realisation(id_usr,titre_rea,description_rea,date_rea,date_participation,url_rea)
-     VALUES ($id_usr,?,?,?,?,?)";
+     VALUES (?,?,?,?,?,?)";
     $prep= $connexion->prepare($requete);
     $prep->execute([$id_usr,$titre_rea,$description_rea,$date_rea,$date_participation,$url_rea]);
     if($prep->fetch())

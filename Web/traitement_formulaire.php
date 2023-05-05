@@ -9,6 +9,10 @@ if (!empty($_POST['titre_rea']) and !empty($_POST['description_rea']) and !empty
    $today =  date("j-m-y");
    $id =  $_SESSION["id"];
 
+   echo $_SESSION['id']; 
+   $s = $_SESSION["statut"]; 
+ 
+   echo "<p style='color: E2E2E2 > " . $_SESSION['statut'] . "</p>"; 
    if ($today >= recupererDateDebut() and $today <= recupererDateFin()){
       echo "le concours a n'a pas commencé ou est déja fini";
    }

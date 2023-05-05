@@ -16,6 +16,7 @@
       echo "<p> message : ".$_GET["message"]." </p>";
    }
    echo "<p style='color:#E2E2E2;'>" . date("j-m-y"). "</p>";
+
   ?>
 
 

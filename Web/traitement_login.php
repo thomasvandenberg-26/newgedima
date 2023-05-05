@@ -20,6 +20,8 @@ if(isset($_POST['email_usr']) and isset($_POST['mdp_usr'])) {
     echo "id" . $id['id_usr']; 
    
     $s = getStatut($id['id_usr']); 
+    $_SESSION['statut'] = $s; 
+    
     echo "statut : " . $s['statut_usr'];
     
     
